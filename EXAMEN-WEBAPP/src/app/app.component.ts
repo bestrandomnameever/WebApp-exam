@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+  name = 'Mayo Chiki';
+  url = 'https://mcd.iosphe.re/n/52913/1/front/a/';
 }

@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+$font-size-medium: 16px;
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: $font-size-medium;
+}

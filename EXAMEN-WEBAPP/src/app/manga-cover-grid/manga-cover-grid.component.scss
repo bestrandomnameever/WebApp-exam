@@ -1,12 +1,19 @@
 $mangaCoverMinWidth: 190px;
-$gutter-width: 1rem;
+$gutter-width: 5px;
 
 .manga-cover-grid {
-    $leftOverWidth: calc(100% % #{$mangaCoverMinWidth});
-    $itemsPerRow: calc((100% - #{$leftOverWidth}) / #{$mangaCoverMinWidth});
-
     display: flex;
+
+    flex-wrap: wrap;
     &__cover {
-        width: calc(#{$mangaCoverMinWidth} + (#{$leftOverWidth} / #{$itemsPerRow}));
+        width: calc(100% - (2 * #{$gutter-width}));
+        margin: #{$gutter-width} #{$gutter-width};
+
+        @for $multiplier from 1 through 13  {
+            $result: ($mangaCoverMinWidth + (2 * $gutter-width)) * $multiplier;
+            @media screen and (min-width: #{$result}) {
+                width: calc(100% / #{$multiplier} - (2 * #{$gutter-width}));
+            }
+        }
     }
 }

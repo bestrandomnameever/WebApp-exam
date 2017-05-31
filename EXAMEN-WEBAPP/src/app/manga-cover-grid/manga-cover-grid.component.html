@@ -1,3 +1,3 @@
 <div class="manga-cover-grid">
-  <app-manga-cover *ngFor="let manga of mangas" [mangaName]="manga.title" [mangaCoverUrl]="manga.coverUrl" class="manga-cover-grid__cover" (click)="openDetail(manga)"></app-manga-cover>
+  <app-manga-cover *ngFor="let manga of mangas" [mangaName]="manga.title" [mangaCoverUrl]="manga.coverUrl" [mangaSynopsis]="manga.synopsis" class="manga-cover-grid__cover" (click)="openDetail(manga)"></app-manga-cover>
 </div>

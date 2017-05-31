@@ -13,6 +13,9 @@ export class MangaCoverComponent implements OnInit {
   @Input()
   mangaCoverUrl: string;
 
+  @Input()
+  mangaSynopsis: string;
+
   constructor() { }
 
   ngOnInit() {

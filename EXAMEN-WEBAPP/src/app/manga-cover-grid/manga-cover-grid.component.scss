@@ -1,0 +1,12 @@
+$mangaCoverMinWidth: 190px;
+$gutter-width: 1rem;
+
+.manga-cover-grid {
+    $leftOverWidth: calc(100% % #{$mangaCoverMinWidth});
+    $itemsPerRow: calc((100% - #{$leftOverWidth}) / #{$mangaCoverMinWidth});
+
+    display: flex;
+    &__cover {
+        width: calc(#{$mangaCoverMinWidth} + (#{$leftOverWidth} / #{$itemsPerRow}));
+    }
+}

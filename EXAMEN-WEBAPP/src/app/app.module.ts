@@ -2,23 +2,32 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+
+import { HomeModule } from './home/home.module';
 
 import { AppComponent } from './app.component';
-import { MangaCoverComponent } from './manga-cover/manga-cover.component';
-import { MangaCoverGridComponent } from './manga-cover-grid/manga-cover-grid.component';
-import { MainNavComponent } from './main-nav/main-nav.component';
+import { 
+  SharedModule,
+  MainNavComponent
+} from './shared';
+
+
+const rootRouting = RouterModule.forRoot([], { useHash: true });
 
 @NgModule({
   declarations: [
     AppComponent,
-    MangaCoverComponent,
-    MangaCoverGridComponent,
     MainNavComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HomeModule,
+    HttpModule,
+    rootRouting,
+    RouterModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

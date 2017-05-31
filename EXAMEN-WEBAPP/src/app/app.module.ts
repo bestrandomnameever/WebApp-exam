@@ -5,11 +5,15 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { MangaCoverComponent } from './manga-cover/manga-cover.component';
+import { MangaCoverGridComponent } from './manga-cover-grid/manga-cover-grid.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MangaCoverComponent
+    MangaCoverComponent,
+    MangaCoverGridComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,

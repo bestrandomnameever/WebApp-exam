@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { HomeModule } from './home/home.module';
+import { AddMangaModule } from './add-manga/add-manga.module';
 
 import { AppComponent } from './app.component';
 import { 
@@ -21,6 +22,7 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
     MainNavComponent
   ],
   imports: [
+    AddMangaModule,
     BrowserModule,
     FormsModule,
     HomeModule,

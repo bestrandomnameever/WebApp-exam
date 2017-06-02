@@ -1,3 +1,74 @@
-<md-input-container class="example-full-width">
-    <input mdInput placeholder="Title">
+<div class="container">
+    <div class="two-column-layout">
+        <div>
+            <img src="{{manga.coverUrl}}" alt="" class="manga-img">
+            <md-input-container>
+                <input mdInput [(ngModel)]="manga.coverUrl" placeholder="Image url">
+            </md-input-container>
+        </div>
+        <div>
+            <h1>{{manga.title}}</h1>
+            <small *ngFor="let title of manga.alternativeTitles">{{title}}</small>
+            <md-input-container>
+                <input mdInput [(ngModel)]="manga.title" placeholder="Title">
+            </md-input-container>
+
+            <md-input-container>
+                <input mdInput placeholder="Associated names">
+            </md-input-container>
+
+            <md-input-container>
+                <input mdInput placeholder="Author" [mdAutocomplete]="auto">
+            </md-input-container>
+
+            <md-autocomplete #auto="mdAutocomplete">
+                <md-option>Aka</md-option>
+                <md-option>Su</md-option>
+                <!--<md-option *ngFor="let state of filteredStates | async" [value]="state">
+                    {{ state }}
+                </md-option>-->
+            </md-autocomplete>
+
+            <md-input-container>
+                <input mdInput placeholder="Artist" [mdAutocomplete]="auto">
+            </md-input-container>
+
+            <md-autocomplete #auto="mdAutocomplete">
+                <md-option>Aka</md-option>
+                <md-option>Su</md-option>
+            </md-autocomplete>
+
+            <md-select placeholder="Type" name="Type">
+                <md-option>Manga</md-option>
+                <md-option>Artbook</md-option>
+                <md-option>Doujinshi</md-option>
+                <md-option>Drama CD</md-option>
+                <md-option>Manhwa</md-option>
+                <md-option>Manhua</md-option>
+                <md-option>Thai</md-option>
+                <md-option>Indonesian</md-option>
+                <md-option>Novel</md-option>
+                <md-option>OEL</md-option>
+                <md-option>Filipino</md-option>
+            </md-select>
+
+            <tag-input [(ngModel)]='selectedGenres' theme='weeb-theme' [secondaryPlaceholder]='"Add some genres"' [placeholder]='"Add more"' [onlyFromAutocomplete]="true">
+                <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="genres">
+                </tag-input-dropdown>
+            </tag-input>
+
+            <tag-input [(ngModel)]='selectedCategories' theme='weeb-theme' [secondaryPlaceholder]='"Add some categories"' [placeholder]='"Add more"' [transform]="transformLowerCasedCapitalized">
+                <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="categories">
+                </tag-input-dropdown>
+            </tag-input>
+        </div>
+    </div>
+</div>
+
+<md-checkbox [checked]="checked">
+    Completly scanlated
+</md-checkbox>
+
+<md-input-container>
+    <textarea mdInput placeholder="Synopsys"></textarea>
 </md-input-container>

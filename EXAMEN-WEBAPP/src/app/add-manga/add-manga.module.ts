@@ -1,8 +1,16 @@
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MdInputModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MdAutocompleteModule,
+  MdInputModule,
+  MdSelectModule,
+  MdCheckboxModule
+} from '@angular/material';
+import { TagInputModule } from 'ng2-tag-input';
 
 import { AddMangaComponent } from './add-manga.component';
 
@@ -16,10 +24,17 @@ const addMangaRouting = RouterModule.forChild([
 @NgModule({
   imports: [
     addMangaRouting,
+    BrowserAnimationsModule,
     CommonModule,
+    FormsModule,
+    MdAutocompleteModule,
+    MdCheckboxModule,
     MdInputModule,
-    BrowserAnimationsModule
+    MdSelectModule,
+    TagInputModule
   ],
-  declarations: [AddMangaComponent]
+  declarations: [
+    AddMangaComponent
+  ]
 })
-export class AddMangaModule { }
+export class AddMangaModule {}

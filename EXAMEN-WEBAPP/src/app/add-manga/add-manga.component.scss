@@ -1,0 +1,26 @@
+.container {
+    padding: 2rem;
+}
+
+md-input-container {
+    width: 100%;
+}
+
+.two-column-layout {
+    display: flex;
+
+    > * {
+        &:first-of-type {
+            width: 30%;
+            margin-right: 5%;
+        }
+
+        &:last-of-type {
+            width: 65%;
+        }
+
+        .manga-img {
+            width: 100%;
+        }
+    }
+}

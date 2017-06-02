@@ -1,0 +1,44 @@
+@import "~ng2-tag-input/dist/modules/core/styles/core/_core.scss";
+@import "../../sass/_globals";
+
+$primary: $primary-color;
+$primary-dark: $primary-color-dark;
+
+// this is the container's theme
+$weeb-theme: (
+    container-border-bottom: 1px solid $input-underline-unfocused-color !important,
+    container-border-bottom-focused: 2px solid $primary-color !important
+);
+
+// this is the tag's theme
+$weeb-tag-theme: (
+    background: $primary,
+    background-focused: $primary-dark,
+    background-active: $primary-dark,
+    background-hover: $primary-dark,
+    color: #fff,
+    color-hover: #fff,
+    border-radius: 2px
+);
+
+// this is the delete icon's theme
+$weeb-icon-theme: (
+    fill: #fff,
+    fill-focus: #eee,
+    transition: all 0.35s
+);
+
+// apply theme to the container
+/deep/ .ng2-tag-input.weeb-theme {
+    @include tag-input-theme($weeb-theme);
+}
+
+// apply theme to the tags
+/deep/ .ng2-tag-input.weeb-theme tag {
+    @include tag-theme($weeb-tag-theme);
+}
+
+// apply theme to the delete icon
+/deep/ .ng2-tag-input.weeb-theme tag delete-icon {
+    @include icon-theme($weeb-icon-theme);
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MangaDummyRepo } from "app/MangasDummyRepo";
+import { MangaService } from 'app/shared';
 
 @Component({
   selector: 'app-manga-cover-grid',
@@ -11,10 +11,11 @@ export class MangaCoverGridComponent implements OnInit {
 
   mangas;
 
-  constructor() { }
+  constructor(private mangaService : MangaService) { }
 
   ngOnInit() {
-    this.mangas = new MangaDummyRepo().MANGAS;
+    // this.mangas = new MangaDummyRepo().MANGAS;
+    this.mangaService.getAllMangas().then(mangas => this.mangas = mangas);
   }
 
   openDetail(manga) {

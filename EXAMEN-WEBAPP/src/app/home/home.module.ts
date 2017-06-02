@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { MangaCoverComponent } from './manga-cover/manga-cover.component';
 import { MangaCoverGridComponent } from './manga-cover-grid/manga-cover-grid.component';
 
+import { MangaService } from 'app/shared'
+
 const homeRouting = RouterModule.forChild([
   {
     path: '',
@@ -22,6 +24,8 @@ const homeRouting = RouterModule.forChild([
         CommonModule,
         RouterModule
     ],
-    providers: []
+    providers: [
+        MangaService
+    ]
 })
 export class HomeModule {}

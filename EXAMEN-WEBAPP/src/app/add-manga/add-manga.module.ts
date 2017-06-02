@@ -2,7 +2,6 @@ import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdAutocompleteModule,
@@ -13,6 +12,8 @@ import {
 import { TagInputModule } from 'ng2-tag-input';
 
 import { AddMangaComponent } from './add-manga.component';
+
+import { GenresService, CategoriesService } from 'app/shared';
 
 const addMangaRouting = RouterModule.forChild([
   {
@@ -35,6 +36,10 @@ const addMangaRouting = RouterModule.forChild([
   ],
   declarations: [
     AddMangaComponent
+  ],
+  providers: [
+    GenresService,
+    CategoriesService
   ]
 })
 export class AddMangaModule {}

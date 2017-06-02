@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { GenresService, CategoriesService } from 'app/shared';
+
 @Component({
   selector: 'app-addmanga',
   templateUrl: './add-manga.component.html',
@@ -15,28 +17,30 @@ export class AddMangaComponent implements OnInit {
     coverUrl: "https://mcd.iosphe.re/r/62667/1/front/a/",
   }
 
-  genres: string[] = [
+  genres: string[];
+  /*genres: string[] = [
     "romance",
     "tragedy",
     "comedy"
-  ];
+  ];*/
   selectedGenres: string[] = [];
 
-  categories: string[] = [
+  categories: string[];
+  /*categories: string[] = [
     "10th Century",
     "4-koma",
     "Absent Parent/s",
     "Academy",
     "Accent Colors",
     "Accidental Death"
-  ];
+  ];*/
   selectedCategories: string[] = [];
 
-  constructor() {
-    this.genres = this.genres.map(item => this.transformLowerCasedCapitalized(item));
-  }
+  constructor(private genresService : GenresService, private categoriesService: CategoriesService) {}
 
   ngOnInit() {
+    this.genresService.getAllGenres().then(genres => this.genres = genres.map(item => this.transformLowerCasedCapitalized(item)));
+    this.categoriesService.getAllCategories().then(categories => this.categories = categories.map(item => this.transformLowerCasedCapitalized(item)));
   }
 
   transformLowerCasedCapitalized(item: string): string {

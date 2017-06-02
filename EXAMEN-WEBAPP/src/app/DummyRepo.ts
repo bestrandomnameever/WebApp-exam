@@ -1,4 +1,4 @@
-export class MangaDummyRepo {
+export class DummyRepo {
     MANGAS = [
         {
             title: "Mayo Chiki",
@@ -108,5 +108,65 @@ export class MangaDummyRepo {
              It is implied that the title of the manga is derived from the "good endings" that are achieved in visual novels.`,
             genres: ["Drama", "Romance", "Shounen"]
         }
+    ];
+
+    GENRES = [
+        "action",
+        "adult",
+        "adventure",
+        "comedy",
+        "doujinshi",
+        "ecchi",
+        "fantasy",
+        "gender bender",
+        "harem",
+        "historical",
+        "horror",
+        "josei",
+        "lolicon",
+        "mature",
+        "mecha",
+        "mystery",
+        "psychological",
+        "romance",
+        "school life",
+        "sci-fi",
+        "seinen",
+        "shotacon",
+        "shoujo",
+        "shoujo ai",
+        "shounen",
+        "slice of life",
+        "smut",
+        "sports",
+        "supernatural",
+        "tragedy"
+    ]
+
+    CATEGORIES = [
+        "10th Century",
+        "11th Century",
+        "12th Century",
+        "13th Century",
+        "14th Century",
+        "15th Century",
+        "16th Century",
+        "17th Century",
+        "18th Century",
+        "19th Century",
+        "20th Century",
+        "21st Century",
+        "2nd Century",
+        "3rd Century",
+        "4-koma",
+        "8th Century",
+        "A Change in Art Style",
+        "Abandoned Child",
+        "Abandonment",
+        "Abe no Seimei or a Relative",
+        "Able To Travel Between World/s",
+        "Abortion",
+        "Abortive Love",
+        "Absent Parent/s",
     ]
 }

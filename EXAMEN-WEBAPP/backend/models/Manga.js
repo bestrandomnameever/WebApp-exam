@@ -4,6 +4,7 @@ var MangaSchema = new mongoose.Schema({
     title: String,
     alternativeTitles: [String],
     coverUrl: String,
+    synopsis: String,
     author: String,
     artist: String,
     type: String,
@@ -13,10 +14,11 @@ var MangaSchema = new mongoose.Schema({
 
 MangaSchema.methods.toJSON = function() {
     return {
-        title: this._id,
+        _id: this._id,
         title: this.title,
         alternativeTitles: this.alternativeTitles,
         coverUrl: this.coverUrl,
+        synopsis: this.synopsis,
         author: this.author,
         artist: this.artist,
         type: this.type,

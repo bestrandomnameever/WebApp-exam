@@ -4,9 +4,12 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // Create global app object
 const app = express();
+
+app.use(cors());
 
 // Parsers for POST data
 app.use(bodyParser.json());

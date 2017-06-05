@@ -30,7 +30,7 @@ router.get('/genres', function(req, res, next) {
 router.get('/categories', function(req, res, next) {
     Manga.find().distinct('categories').lean().exec((function(err, docs) {
         return res.json({
-            genres: docs.sort()
+            categories: docs.sort()
         });
     }));
 });

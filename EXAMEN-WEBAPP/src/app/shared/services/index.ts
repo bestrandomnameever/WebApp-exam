@@ -1,3 +1,3 @@
+export * from './api.service';
 export * from './mangas.service';
-export * from './genres.service';
-export * from './categories.service';
+export * from './metadata.service';

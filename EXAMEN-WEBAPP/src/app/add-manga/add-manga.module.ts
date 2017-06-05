@@ -13,8 +13,6 @@ import { TagInputModule } from 'ng2-tag-input';
 
 import { AddMangaComponent } from './add-manga.component';
 
-import { GenresService, CategoriesService } from 'app/shared';
-
 const addMangaRouting = RouterModule.forChild([
   {
     path: "add",
@@ -38,8 +36,7 @@ const addMangaRouting = RouterModule.forChild([
     AddMangaComponent
   ],
   providers: [
-    GenresService,
-    CategoriesService
+
   ]
 })
 export class AddMangaModule {}

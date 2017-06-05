@@ -18,24 +18,23 @@
             </md-input-container>
 
             <md-input-container>
-                <input mdInput placeholder="Author" [mdAutocomplete]="auto">
+                <input mdInput placeholder="Author" [mdAutocomplete]="authorAuto">
             </md-input-container>
 
-            <md-autocomplete #auto="mdAutocomplete">
-                <md-option>Aka</md-option>
-                <md-option>Su</md-option>
-                <!--<md-option *ngFor="let state of filteredStates | async" [value]="state">
-                    {{ state }}
-                </md-option>-->
+            <md-autocomplete #authorAuto="mdAutocomplete">
+                <md-option *ngFor="let author of authors" [value]="author">
+                    {{ author }}
+                </md-option>
             </md-autocomplete>
 
             <md-input-container>
-                <input mdInput placeholder="Artist" [mdAutocomplete]="auto">
+                <input mdInput placeholder="Artist" [mdAutocomplete]="artistAuto">
             </md-input-container>
 
-            <md-autocomplete #auto="mdAutocomplete">
-                <md-option>Aka</md-option>
-                <md-option>Su</md-option>
+            <md-autocomplete #artistAuto="mdAutocomplete">
+                <md-option *ngFor="let artist of artists" [value]="artist">
+                    {{ artist }}
+                </md-option>
             </md-autocomplete>
 
             <md-select placeholder="Type" name="Type">

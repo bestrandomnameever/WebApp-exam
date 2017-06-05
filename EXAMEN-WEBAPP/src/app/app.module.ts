@@ -9,8 +9,11 @@ import { AddMangaModule } from './add-manga/add-manga.module';
 
 import { AppComponent } from './app.component';
 import { 
+  ApiService,
+  MainNavComponent,
+  MangaService,
+  MetadataService,
   SharedModule,
-  MainNavComponent
 } from './shared';
 
 
@@ -31,7 +34,11 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
     RouterModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    MangaService,
+    MetadataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

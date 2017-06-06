@@ -2,11 +2,35 @@ var router = require('express').Router();
 var cheerio = require('cheerio');
 var axios = require('axios');
 
-/*router.param('id', function(req, res, next, id) {
+router.get('/search/:searchterm', function (req, res, next) {
+    axios({
+            method: 'get',
+            baseURL: 'https://www.mangaupdates.com',
+            url: '/series.html',
+            params: {
+                act: 'series',
+                stype: 'title',
+                search: req.params.searchterm
+            }
+        })
+        .then(function (response) {
+            var html = response.data;
+            const $ = cheerio.load(html);
 
-})*/
+            const ids = $('.series_rows_table a[alt="Series Info"]')
+            .map(function (i, el) {
+               return {
+                    id: $(el).attr('href').split('id=')[1],
+                    title: $(el).text(),
+                    genres: $(el).parent().next().text()
+                }
+            }).get();
+            
+            return res.json(ids);
+        })
+});
 
-router.get('/:id', function(req, res, next) {
+router.get('/findId/:id', function(req, res, next) {
     axios({
             method: 'get',
             baseURL: 'https://www.mangaupdates.com',
@@ -60,6 +84,8 @@ router.get('/:id', function(req, res, next) {
             console.log(error);
         })
 });
+
+
 
 function findsContentWithsCat($, section) {
     return $('.sCat').filter(function(i, el) {

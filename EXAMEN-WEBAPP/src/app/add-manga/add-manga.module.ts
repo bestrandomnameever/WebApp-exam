@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdAutocompleteModule,
+  MdButtonModule,
   MdInputModule,
   MdSelectModule,
   MdCheckboxModule
@@ -27,6 +28,7 @@ const addMangaRouting = RouterModule.forChild([
     CommonModule,
     FormsModule,
     MdAutocompleteModule,
+    MdButtonModule,
     MdCheckboxModule,
     MdInputModule,
     MdSelectModule,

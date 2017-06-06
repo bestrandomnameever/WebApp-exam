@@ -26,7 +26,7 @@ exports.seedMangas = () => {
             synopsis: `Good Ending follows the main character Utsumi's interactions with Kurokawa Yuki,
              a member of the school tennis team, in order for Utsumi to confess his feelings to the captain of the tennis team.
              It is implied that the title of the manga is derived from the "good endings" that are achieved in visual novels.`,
-             author: "SASUGA Kei",
+            author: "SASUGA Kei",
             artist: "SASUGA Kei",
             genres: ["Drama", "Romance", "Shounen"],
             categories: ["Beautiful Female Lead", "Character Growth", "Coworker/s", "Dating Advice", "Friends Become Lovers", "Love Polygon", "Misunderstanding/s", "Slow Romance", "Tragic Past", "Weak Male Lead"]
@@ -38,7 +38,7 @@ exports.seedMangas = () => {
             author: "AKI Eda",
             artist: "AKI Eda",
             genres: ["Comedy", "Romance", "Seinen", "Slice of Life"],
-            categories: ["Alcohol", "Apartment Life", "Career Woman", "Finding Love Again", "Friends Become Lovers", "Friendship", "Glasses-Wearing Male Lead",  "Male Lead Falls in Love First", "Office Worker/s", "Older Female", "Younger Male"]
+            categories: ["Alcohol", "Apartment Life", "Career Woman", "Finding Love Again", "Friends Become Lovers", "Friendship", "Glasses-Wearing Male Lead", "Male Lead Falls in Love First", "Office Worker/s", "Older Female", "Younger Male"]
         },
         {
             title: "Kimi no Iru Machi",
@@ -102,6 +102,16 @@ exports.seedMangas = () => {
             artist: "WATASHIYA Kaworu",
             genres: ["Drama", "Romance", "Shounen"],
             categories: ["Adapted to Anime", "Age Gap", "Dead Family Member/s", "Elementary School", "Forbidden Love", "Glasses-Wearing Male Lead", "Guardian Relationship", "Mature Child", "Student-Teacher Relationship", "Student/s"]
+        },
+        {
+            title: "Nisekoi",
+            alternativeTitles: ["Nisekoi: False Love", "Nisekoi : Amours, mensonges et yakuzas", "니세코이", "รักลวงป่วนใจ", "伪恋", "ニセコイ"],
+            coverUrl: "https://mcd.iosphe.re/r/62667/1/front/a/",
+            synopsis: "On May 9th, 1999, Raku Ichijou was born into the Yakuza heir. On June 7th, 1999, Chitoge Kirisaki was born into the Bee Hive Gangsters. Even though Raku may be the next heir to a Yakuza group, he's actually a normal highschool student who wishes for peace and quiet. However, when he meets violent transfer student Chitoge Kirisaki, his life takes a sharp turn for the worse!",
+            author: "KOMI Naoshi",
+            artist: "KOMI Naoshi",
+            genres: ["Comedy","Drama","Romance","School Life","Shounen"],
+            categories: ["Childhood Friend/s", "Childhood Love", "Childhood Promise", "Family Rivals", "Gang/s", "Mafia", "Misunderstanding/s", "Pretend Lovers", "Promise/s", "Strong Female Lead"]
         }
     ]
 

@@ -31,6 +31,7 @@ $weeb-icon-theme: (
 // apply theme to the container
 /deep/ .ng2-tag-input.weeb-theme {
     @include tag-input-theme($weeb-theme);
+    margin-bottom: 16px;
 }
 
 // apply theme to the tags

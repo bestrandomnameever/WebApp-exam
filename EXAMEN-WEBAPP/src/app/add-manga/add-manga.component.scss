@@ -1,26 +1,37 @@
-.container {
+@import '../../sass/_globals';
+
+form.add-manga-form {
     padding: 2rem;
-}
 
-md-input-container {
-    width: 100%;
-}
+    .two-column-layout {
+        display: flex;
 
-.two-column-layout {
-    display: flex;
+        >* {
+            &:first-of-type {
+                width: 30%;
+                margin-right: 5%;
+            }
 
-    > * {
-        &:first-of-type {
-            width: 30%;
-            margin-right: 5%;
+            &:last-of-type {
+                width: 65%;
+            }
+
+            .manga-img {
+                width: 100%;
+            }
         }
+    }
 
-        &:last-of-type {
-            width: 65%;
-        }
+    md-input-container {
+        width: 100%;
+    }
 
-        .manga-img {
-            width: 100%;
-        }
+    .submit-btn {
+        display: block;
+        margin: 2rem 0 1rem auto;
+
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $light-text-color;
     }
 }

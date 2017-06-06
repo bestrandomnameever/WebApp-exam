@@ -1,24 +1,21 @@
-<div class="container">
+<form class="add-manga-form">
     <div class="two-column-layout">
         <div>
             <img src="{{manga.coverUrl}}" alt="" class="manga-img">
             <md-input-container>
-                <input mdInput [(ngModel)]="manga.coverUrl" placeholder="Image url">
+                <input mdInput [(ngModel)]="manga.coverUrl" name="cover url" placeholder="Image url">
             </md-input-container>
         </div>
         <div>
-            <h1>{{manga.title}}</h1>
-            <small *ngFor="let title of manga.alternativeTitles">{{title}}</small>
             <md-input-container>
-                <input mdInput [(ngModel)]="manga.title" placeholder="Title">
+                <input mdInput [(ngModel)]="manga.title" name="title" placeholder="Title">
             </md-input-container>
 
-            <md-input-container>
-                <input mdInput placeholder="Associated names">
-            </md-input-container>
+            <tag-input [(ngModel)]='manga.alternativeTitles' name="alternative titles" theme='weeb-theme' [secondaryPlaceholder]='"Add some alternative names"' [placeholder]='"Add more"'>
+            </tag-input>
 
             <md-input-container>
-                <input mdInput placeholder="Author" [mdAutocomplete]="authorAuto">
+                <input mdInput [(ngModel)]="manga.author" name="author" [mdAutocomplete]="authorAuto" placeholder="Author">
             </md-input-container>
 
             <md-autocomplete #authorAuto="mdAutocomplete">
@@ -28,7 +25,7 @@
             </md-autocomplete>
 
             <md-input-container>
-                <input mdInput placeholder="Artist" [mdAutocomplete]="artistAuto">
+                <input mdInput [(ngModel)]="manga.artist" name="artist" [mdAutocomplete]="artistAuto" placeholder="Artist">
             </md-input-container>
 
             <md-autocomplete #artistAuto="mdAutocomplete">
@@ -37,7 +34,7 @@
                 </md-option>
             </md-autocomplete>
 
-            <md-select placeholder="Type" name="Type">
+            <md-select [(ngModel)]="manga.type" name="type" placeholder="Type">
                 <md-option>Manga</md-option>
                 <md-option>Artbook</md-option>
                 <md-option>Doujinshi</md-option>
@@ -51,23 +48,24 @@
                 <md-option>Filipino</md-option>
             </md-select>
 
-            <tag-input [(ngModel)]='selectedGenres' theme='weeb-theme' [secondaryPlaceholder]='"Add some genres"' [placeholder]='"Add more"' [onlyFromAutocomplete]="true">
-                <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="genres">
-                </tag-input-dropdown>
-            </tag-input>
+            <md-checkbox [checked]="true" name="scanlated">
+                Completely Scanlated?
+            </md-checkbox>
 
-            <tag-input [(ngModel)]='selectedCategories' theme='weeb-theme' [secondaryPlaceholder]='"Add some categories"' [placeholder]='"Add more"' [transform]="transformLowerCasedCapitalized">
-                <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="categories">
-                </tag-input-dropdown>
-            </tag-input>
+            <md-input-container>
+                <textarea mdInput [(ngModel)]="manga.synopsis" name="synopsis" placeholder="Synopsys"></textarea>
+            </md-input-container>
         </div>
     </div>
-</div>
+    <tag-input [(ngModel)]='manga.genres' name="genres" theme='weeb-theme' [secondaryPlaceholder]='"Add some genres"' [placeholder]='"Add more"' [onlyFromAutocomplete]="true">
+        <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="genres">
+        </tag-input-dropdown>
+    </tag-input>
 
-<md-checkbox [checked]="checked">
-    Completly scanlated
-</md-checkbox>
+    <tag-input [(ngModel)]='manga.categories' name="categories" theme='weeb-theme' [secondaryPlaceholder]='"Add some categories"' [placeholder]='"Add more"' [transform]="transformLowerCasedCapitalized">
+        <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="categories">
+        </tag-input-dropdown>
+    </tag-input>
 
-<md-input-container>
-    <textarea mdInput placeholder="Synopsys"></textarea>
-</md-input-container>
+    <button class="submit-btn" md-raised-button [color]="'accent'" (click)="submit()">Submit</button>
+</form>

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from "@angular/forms";
+
 import {
+  DialogsService,
   MetadataService
 } from 'app/shared';
 
@@ -15,6 +17,8 @@ import { Subject } from "rxjs/Subject";*/
     "./ng2-tag-input.custom-theme.scss"]
 })
 export class AddMangaComponent implements OnInit {
+
+  muId: string = "62667";
 
   manga = {
     title: "Nisekoi",
@@ -33,7 +37,8 @@ export class AddMangaComponent implements OnInit {
   categories: string[];
 
   constructor(
-    private metadataService: MetadataService
+    private metadataService: MetadataService,
+    private dialogsService: DialogsService
   ) { }
 
   ngOnInit() {
@@ -50,6 +55,12 @@ export class AddMangaComponent implements OnInit {
 
   submit() {
     console.log("Hier backend logica");
+  }
+
+  openSelectCoverDialog(){
+    this.dialogsService.openCoverPickerDialog(this.muId).then(res => {
+      this.manga.coverUrl = res;
+    })
   }
 
 }

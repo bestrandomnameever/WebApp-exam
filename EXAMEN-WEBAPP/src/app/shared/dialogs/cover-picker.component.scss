@@ -1,0 +1,13 @@
+.cover-results {
+    width: 20rem;
+    height: 30rem;
+    overflow-y: auto;
+
+    img {
+        width: 10rem;
+
+        &.selected {
+            border: 2px solid orange;
+        }
+    }
+}

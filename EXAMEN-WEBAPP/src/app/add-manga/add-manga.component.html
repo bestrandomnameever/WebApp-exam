@@ -1,10 +1,17 @@
 <form class="add-manga-form">
     <div class="two-column-layout">
         <div>
-            <img src="{{manga.coverUrl}}" alt="" class="manga-img">
-            <md-input-container>
-                <input mdInput [(ngModel)]="manga.coverUrl" name="cover url" placeholder="Image url">
-            </md-input-container>
+            <div class="cover-img" [ngStyle]="{'background-image': 'url(' + manga.coverUrl + ')'}">
+                <div class="cover-img__edit-menu">
+                    <md-input-container>
+                        <input mdInput [(ngModel)]="manga.coverUrl" name="cover url" placeholder="Image url">
+                    </md-input-container>
+                    <hr>
+                    <span>OR</span>
+                    <hr>
+                    <button md-raised-button [color]="'accent'" (click)='openSelectCoverDialog()'>IMPORT</button>
+                </div>
+            </div>
         </div>
         <div>
             <md-input-container>

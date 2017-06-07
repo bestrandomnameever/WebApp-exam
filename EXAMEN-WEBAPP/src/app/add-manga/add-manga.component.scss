@@ -22,6 +22,39 @@ form.add-manga-form {
         }
     }
 
+    .cover-img {
+        position: relative;
+        height: 0;
+        padding-bottom: 140%;
+
+        background-size: cover;
+
+        &__edit-menu {
+            display: none;
+            position: absolute;
+
+            top: 50%;
+            left: 1rem;
+            right: 1rem;
+            transform: translateY(-50%);
+
+            color: white;
+            text-align: center;
+
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        &:hover {
+            .cover-img__edit-menu {
+                display: block;
+                background-color: rgba(black, 0.8);
+
+                opacity: 1;
+            }
+        }
+    }
+
     md-input-container {
         width: 100%;
     }

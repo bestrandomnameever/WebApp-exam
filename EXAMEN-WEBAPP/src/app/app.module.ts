@@ -10,11 +10,13 @@ import { AddMangaModule } from './add-manga/add-manga.module';
 import { AppComponent } from './app.component';
 import { 
   ApiService,
+  DialogsModule,
   MainNavComponent,
   MangaService,
   MetadataService,
   SharedModule,
 } from './shared';
+import { MangaCoversDBService } from './shared/services/mangacoverdb.service';
 
 
 const rootRouting = RouterModule.forRoot([], { useHash: true });
@@ -27,6 +29,7 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
   imports: [
     AddMangaModule,
     BrowserModule,
+    DialogsModule,
     FormsModule,
     HomeModule,
     HttpModule,
@@ -37,6 +40,7 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
   providers: [
     ApiService,
     MangaService,
+    MangaCoversDBService,
     MetadataService
   ],
   bootstrap: [AppComponent]

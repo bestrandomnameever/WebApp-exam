@@ -3,13 +3,7 @@
         <div>
             <div class="cover-img" [ngStyle]="{'background-image': 'url(' + manga.coverUrl + ')'}">
                 <div class="cover-img__edit-menu">
-                    <md-input-container>
-                        <input mdInput [(ngModel)]="manga.coverUrl" name="cover url" placeholder="Image url">
-                    </md-input-container>
-                    <hr>
-                    <span>OR</span>
-                    <hr>
-                    <button md-raised-button [color]="'accent'" (click)='openSelectCoverDialog()'>IMPORT</button>
+                    <button md-raised-button [color]="'accent'" (click)='openSelectCoverDialog()'>EDIT</button>
                 </div>
             </div>
         </div>

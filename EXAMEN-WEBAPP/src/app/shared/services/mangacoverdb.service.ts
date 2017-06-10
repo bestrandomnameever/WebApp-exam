@@ -8,6 +8,12 @@ export class MangaCoversDBService {
         private apiService: ApiService
     ){}
     
+    searchMangaCoverDBWithTitle(searchterm: string): Promise<any> {
+        return this.apiService.post('/mangacoverdb/search/', {
+            "Title": searchterm
+        }).toPromise()
+    }
+    
     getCoversFromuID(id: string): Promise<string[]> {
         return this.apiService.get('/mangacoverdb/muId/' + id).toPromise().then(res => res.covers);
     }

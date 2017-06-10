@@ -58,8 +58,10 @@ export class AddMangaComponent implements OnInit {
   }
 
   openSelectCoverDialog(){
-    this.dialogsService.openCoverPickerDialog(this.muId).then(res => {
-      this.manga.coverUrl = res;
+    this.dialogsService.openCoverPickerDialog(this.muId, this.manga.title).then(res => {
+      if(res) {
+        this.manga.coverUrl = res;
+      }
     })
   }
 

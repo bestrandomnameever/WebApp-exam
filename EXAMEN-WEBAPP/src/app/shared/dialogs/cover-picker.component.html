@@ -1,11 +1,52 @@
-<h2 md-dialog-title>Pick a cover</h2>
-<md-input-container>
-    <input mdInput placeholder="Id or https://" [(ngModel)]="searchField">
-</md-input-container>
-<button type="button" md-button (click)="searchForIdOrLink()">Search</button>
-<div class="cover-results">
-    <img *ngFor="let cover of covers" src="{{cover}}" alt="Available cover for manga" (click)="toggleSelectCover($event)" [ngClass]="{'selected': cover === selectedCover}">
+<div class="cover-picker-dialog">
+    <md-tab-group (selectChange)="resetCoversArrays($event)">
+        <md-tab label="MangacoverDB search">
+            <div class="tab-content">
+                <div class="tab-content__searchbar">
+                    <md-input-container>
+                        <input mdInput placeholder="Search for title" [(ngModel)]="titleSearchField" (keyup.enter)="searchForTitle()">
+                    </md-input-container>
+                    <button type="button" md-button (click)="searchForTitle()">Search</button>
+                </div>
+                <div class="tab-content__search-results">
+                    <div *ngFor="let searchResult of searchResults" (click)="selectTitle(searchResult.id)" class="tab-content__search-results__result">
+                        <span>{{searchResult.title}}</span>
+                    </div>
+                </div>
+                <div class="cover-results">
+                    <div class="cover-results__result" *ngFor="let cover of covers" [ngClass]="{'selected': cover === selectedCover}" [ngStyle]="{'background-image': 'url(' + cover + ')'}" (click)="toggleSelectCover(cover)"></div>
+                </div>
+            </div>
+        </md-tab>
+        <md-tab label="Image URL">
+            <div class="tab-content">
+                <div class="tab-content__searchbar">
+                    <md-input-container>
+                        <input mdInput placeholder="Image url" [(ngModel)]="imgUrlSearchField" (keyup.enter)="searchForImgUrl()">
+                    </md-input-container>
+                    <button type="button" md-button (click)="searchForImgUrl()">Search</button>
+                </div>
+                <div class="cover-results">
+                    <div class="cover-results__result" *ngFor="let cover of covers" [ngClass]="{'selected': cover === selectedCover}" [ngStyle]="{'background-image': 'url(' + cover + ')'}" (click)="toggleSelectCover(cover)"></div>
+                </div>
+            </div>
+        </md-tab>
+        <md-tab label="MangacoverDB ID">
+            <div class="tab-content">
+                <div class="tab-content__searchbar">
+                    <md-input-container>
+                        <input mdInput placeholder="Id or https://" [(ngModel)]="idSearchField" (keyup.enter)="searchForIdOrLink()">
+                    </md-input-container>
+                    <button type="button" md-button (click)="searchForIdOrLink()">Search</button>
+                </div>
+                <div class="cover-results">
+                    <div class="cover-results__result" *ngFor="let cover of covers" [ngClass]="{'selected': cover === selectedCover}" [ngStyle]="{'background-image': 'url(' + cover + ')'}" (click)="toggleSelectCover(cover)"></div>
+                </div>
+            </div>
+        </md-tab>
+    </md-tab-group>
+    <div class="dialog-buttons">
+        <button type="button" md-button (click)="dialogRef.close()">Cancel</button>
+        <button type="button" md-raised-button [disabled]="!isSelectedCover" (click)="dialogRef.close(selectedCover)">OK</button>
+    </div>
 </div>
-
-<button type="button" md-button (click)="dialogRef.close()">Cancel</button>
-<button type="button" md-raised-button [disabled]="!isSelectedCover" (click)="dialogRef.close(selectedCover)">OK</button>

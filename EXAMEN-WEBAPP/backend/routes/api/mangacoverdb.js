@@ -10,26 +10,6 @@ router.get('/muId/:muId', function(req, res, next) {
         .then(response => {
             const json = response.data
             const coverCollection = []
-            /*const addedVolumes = []*/
-
-            /*if (json.Covers.a) {
-                json.Covers.a.forEach(el => {
-                    if (el.Side === 'front') {
-                        if (addedVolumes.indexOf(el.Volume) < 0) {
-                            coverCollection.push({
-                                volume: el.Volume,
-                                covers: []
-                            });
-                        }
-                        coverCollection.forEach(volume => {
-                            if (volume.volume === el.Volume) {
-                                volume.covers.push(el.Normal);
-                            }
-                        });
-                    }
-                });
-            }*/
-
             if (json.Covers.a) {
                 json.Covers.a.forEach(el => {
                     if (el.Side === 'front') {
@@ -44,17 +24,24 @@ router.get('/muId/:muId', function(req, res, next) {
         });
 });
 
-router.post('/search/:searchterm', function(req, res, next) {
+router.post('/search/', function(req, res, next) {
     axios({
             method: 'post',
             baseURL: 'https://mcd.iosphe.re/api/v1',
             url: '/search/',
             data: {
-                Title: req.params.searchterm
+                Title: req.body.Title
             }
         })
         .then(response => {
-            const json = response.data
+            console.log(response)
+            const json = response.data.Results.map(el => {
+                return {
+                    id: el[0],
+                    title: el[1]
+                }
+            });
+            console.log(response.data);
             res.json(json);
         })
 });

@@ -45,6 +45,37 @@
                         background-color: $primary-color-light;
                     }
                 }
+
+                &.itemSelected {
+                    > div:not(.selected) {
+                        display: none;
+                    }
+
+                    .selected {
+                        position: relative;
+                        background-color: white;
+
+                        &::after {
+                            position: absolute;
+                            display: block;
+                            content: '';
+
+                            width: 1.5rem;
+                            top: 0;
+                            right: 0.5rem;
+                            bottom: 0;
+
+                            background-image: url('../../../assets/edit_icon.svg');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                        }
+
+                        &:hover {
+                            background-color: #f0f0f0;
+                        }
+                    }
+                }
             }
 
             .cover-results {

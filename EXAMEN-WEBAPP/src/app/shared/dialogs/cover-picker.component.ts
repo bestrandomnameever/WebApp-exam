@@ -13,15 +13,18 @@ export class CoverPickerDialog {
     id: string;
     title: string;
 
-    titleSearchField = "";
     imgUrlSearchField = "";
+
     idSearchField = "";
 
+    titleSearchField = "";
+    selectedTitleIndex: number;
+    searchResults = [];
+
+    covers: string[] = [];
     selectedCover: string;
     isSelectedCover = false;
 
-    searchResults = [];
-    covers: string[] = [];
 
     constructor(
         public dialogRef: MdDialogRef<CoverPickerDialog>,
@@ -29,7 +32,7 @@ export class CoverPickerDialog {
     ) { }
 
     ngOnInit() {
-        if(this.title && this.title !== "") {
+        if (this.title && this.title !== "") {
             this.titleSearchField = this.title;
             this.coverdbservice.searchMangaCoverDBWithTitle(this.title).then(res => {
                 this.searchResults = res;
@@ -39,7 +42,7 @@ export class CoverPickerDialog {
 
     resetCoversArrays(event: MdTabChangeEvent) {
         this.covers = [];
-        if(this.title && this.title !== "" && event.index == 0) {
+        if (this.title && this.title !== "" && event.index == 0) {
             this.titleSearchField = this.title;
             this.coverdbservice.searchMangaCoverDBWithTitle(this.title).then(res => {
                 this.searchResults = res;
@@ -67,15 +70,22 @@ export class CoverPickerDialog {
 
     searchForTitle() {
         this.coverdbservice.searchMangaCoverDBWithTitle(this.titleSearchField).then(res => {
+            this.selectedTitleIndex = undefined;
+            this.covers = [];
             this.searchResults = res;
         });
     }
 
-    selectTitle(id: string) {
-        this.id = id;
-        this.coverdbservice.getCoversFromuID(id).then(res => {
-            this.covers = res;
-        });
+    toggleSelectTitle(id: string, index: number) {
+        if (this.selectedTitleIndex == undefined) {
+            this.selectedTitleIndex = index;
+            this.coverdbservice.getCoversFromuID(id).then(res => {
+                this.covers = res;
+            });
+        } else {
+            this.selectedTitleIndex = undefined;
+            this.covers = [];
+        }
     }
 
     toggleSelectCover(cover: string) {

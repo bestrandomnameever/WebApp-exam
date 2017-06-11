@@ -3,7 +3,8 @@ import { FormControl } from "@angular/forms";
 
 import {
   DialogsService,
-  MetadataService
+  MetadataService,
+  MangaUpdatesService
 } from 'app/shared';
 
 /*import { Observable } from "rxjs/Observable";
@@ -18,7 +19,8 @@ import { Subject } from "rxjs/Subject";*/
 })
 export class AddMangaComponent implements OnInit {
 
-  muId: string = "62667";
+  muId: string = "";
+  muUrlOrId: string = "";
 
   manga = {
     title: "Nisekoi",
@@ -37,8 +39,9 @@ export class AddMangaComponent implements OnInit {
   categories: string[];
 
   constructor(
+    private dialogsService: DialogsService,
     private metadataService: MetadataService,
-    private dialogsService: DialogsService
+    private mangaUpdatesService: MangaUpdatesService
   ) { }
 
   ngOnInit() {
@@ -52,17 +55,33 @@ export class AddMangaComponent implements OnInit {
     return item.charAt(0).toUpperCase() + item.toLowerCase().slice(1);
   }
 
-
-  submit() {
-    console.log("Hier backend logica");
-  }
-
   openSelectCoverDialog(){
     this.dialogsService.openCoverPickerDialog(this.muId, this.manga.title).then(res => {
       if(res) {
         this.manga.coverUrl = res;
       }
     })
+  }
+
+  importFromIdOrUrl() {
+    let id:string = this.muUrlOrId;
+    
+    this.mangaUpdatesService.getMangaInfoFromId(id).then(mangaInfo => {
+      this.manga.title = mangaInfo.title;
+      this.manga.alternativeTitles = mangaInfo.associatedNames;
+      this.manga.coverUrl = mangaInfo.imgUrl;
+      this.manga.synopsis = mangaInfo.synopsis;
+      //this.manga.author = mangaInfo.author;
+      //this.manga.artist = mangaInfo.artist;
+      this.manga.genres = mangaInfo.genres;
+      this.manga.categories = mangaInfo.categories;
+
+      this.muId = id;
+    });
+  }
+
+  submit() {
+    console.log("Hier backend logica");
   }
 
 }

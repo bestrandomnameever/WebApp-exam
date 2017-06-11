@@ -1,41 +1,63 @@
 <form class="add-manga-form">
     <div class="two-column-layout">
         <div>
-            <div class="cover-img" [ngStyle]="{'background-image': 'url(' + manga.coverUrl + ')'}">
+            <div class="cover-img"
+                 [ngStyle]="{'background-image': 'url(' + manga.coverUrl + ')'}">
                 <div class="cover-img__edit-menu">
-                    <button md-raised-button [color]="'accent'" (click)='openSelectCoverDialog()'>EDIT</button>
+                    <button md-raised-button
+                            [color]="'accent'"
+                            (click)='openSelectCoverDialog()'>EDIT</button>
                 </div>
             </div>
         </div>
         <div>
             <md-input-container>
-                <input mdInput [(ngModel)]="manga.title" name="title" placeholder="Title">
+                <input mdInput
+                       [(ngModel)]="manga.title"
+                       name="title"
+                       placeholder="Title">
             </md-input-container>
 
-            <tag-input [(ngModel)]='manga.alternativeTitles' name="alternative titles" theme='weeb-theme' [secondaryPlaceholder]='"Add some alternative names"' [placeholder]='"Add more"'>
+            <tag-input [(ngModel)]='manga.alternativeTitles'
+                       name="alternative titles"
+                       theme='weeb-theme'
+                       [secondaryPlaceholder]='"Add some alternative names"'
+                       [placeholder]='"Add more"'>
             </tag-input>
 
             <md-input-container>
-                <input mdInput [(ngModel)]="manga.author" name="author" [mdAutocomplete]="authorAuto" placeholder="Author">
+                <input mdInput
+                       [(ngModel)]="manga.author"
+                       name="author"
+                       [mdAutocomplete]="authorAuto"
+                       placeholder="Author">
             </md-input-container>
 
             <md-autocomplete #authorAuto="mdAutocomplete">
-                <md-option *ngFor="let author of authors" [value]="author">
+                <md-option *ngFor="let author of authors"
+                           [value]="author">
                     {{ author }}
                 </md-option>
             </md-autocomplete>
 
             <md-input-container>
-                <input mdInput [(ngModel)]="manga.artist" name="artist" [mdAutocomplete]="artistAuto" placeholder="Artist">
+                <input mdInput
+                       [(ngModel)]="manga.artist"
+                       name="artist"
+                       [mdAutocomplete]="artistAuto"
+                       placeholder="Artist">
             </md-input-container>
 
             <md-autocomplete #artistAuto="mdAutocomplete">
-                <md-option *ngFor="let artist of artists" [value]="artist">
+                <md-option *ngFor="let artist of artists"
+                           [value]="artist">
                     {{ artist }}
                 </md-option>
             </md-autocomplete>
 
-            <md-select [(ngModel)]="manga.type" name="type" placeholder="Type">
+            <md-select [(ngModel)]="manga.type"
+                       name="type"
+                       placeholder="Type">
                 <md-option>Manga</md-option>
                 <md-option>Artbook</md-option>
                 <md-option>Doujinshi</md-option>
@@ -49,24 +71,59 @@
                 <md-option>Filipino</md-option>
             </md-select>
 
-            <md-checkbox [checked]="true" name="scanlated">
+            <md-checkbox [checked]="true"
+                         name="scanlated">
                 Completely Scanlated?
             </md-checkbox>
 
             <md-input-container>
-                <textarea mdInput [(ngModel)]="manga.synopsis" name="synopsis" placeholder="Synopsys"></textarea>
+                <textarea mdInput
+                          [(ngModel)]="manga.synopsis"
+                          name="synopsis"
+                          placeholder="Synopsys"></textarea>
             </md-input-container>
         </div>
     </div>
-    <tag-input [(ngModel)]='manga.genres' name="genres" theme='weeb-theme' [secondaryPlaceholder]='"Add some genres"' [placeholder]='"Add more"' [onlyFromAutocomplete]="true">
-        <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="genres">
-        </tag-input-dropdown>
-    </tag-input>
+    <div>
+        <tag-input [(ngModel)]='manga.genres'
+                   name="genres"
+                   theme='weeb-theme'
+                   [secondaryPlaceholder]='"Add some genres"'
+                   [placeholder]='"Add more"'
+                   [onlyFromAutocomplete]="true">
+            <tag-input-dropdown [showDropdownIfEmpty]="true"
+                                [autocompleteItems]="genres">
+            </tag-input-dropdown>
+        </tag-input>
 
-    <tag-input [(ngModel)]='manga.categories' name="categories" theme='weeb-theme' [secondaryPlaceholder]='"Add some categories"' [placeholder]='"Add more"' [transform]="transformLowerCasedCapitalized">
-        <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="categories">
-        </tag-input-dropdown>
-    </tag-input>
-
-    <button class="submit-btn" md-raised-button [color]="'accent'" (click)="submit()">Submit</button>
+        <tag-input [(ngModel)]='manga.categories'
+                   name="categories"
+                   theme='weeb-theme'
+                   [secondaryPlaceholder]='"Add some categories"'
+                   [placeholder]='"Add more"'
+                   [transform]="transformLowerCasedCapitalized">
+            <tag-input-dropdown [showDropdownIfEmpty]="true"
+                                [autocompleteItems]="categories">
+            </tag-input-dropdown>
+        </tag-input>
+    </div>
+    <div class="mu-import-container">
+        <span>OR</span>
+        <div>
+            <md-input-container>
+                <input mdInput
+                       [(ngModel)]="muUrlOrId"
+                       name="MU URL-ID"
+                       placeholder="Mangaupdates URL or ID">
+            </md-input-container>
+            <button class=""
+            md-raised-button
+            [color]="'primary'"
+            (click)="importFromIdOrUrl()">IMPORT</button>
+        </div>
+    </div>
+    <button class="submit-btn"
+            md-raised-button
+            [color]="'accent'"
+            (click)="submit()">Submit</button>
 </form>

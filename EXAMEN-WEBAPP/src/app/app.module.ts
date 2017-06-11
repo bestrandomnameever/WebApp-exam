@@ -13,6 +13,7 @@ import {
   DialogsModule,
   MainNavComponent,
   MangaService,
+  MangaUpdatesService,
   MetadataService,
   SharedModule,
 } from './shared';
@@ -39,8 +40,9 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
   ],
   providers: [
     ApiService,
-    MangaService,
     MangaCoversDBService,
+    MangaService,
+    MangaUpdatesService,
     MetadataService
   ],
   bootstrap: [AppComponent]

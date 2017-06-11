@@ -1,5 +1,9 @@
 @import '../../sass/_globals';
 
+md-input-container {
+        width: 100%;
+    }
+
 form.add-manga-form {
     padding: 2rem;
 
@@ -55,8 +59,8 @@ form.add-manga-form {
         }
     }
 
-    md-input-container {
-        width: 100%;
+    .mu-import-container {
+
     }
 
     .submit-btn {

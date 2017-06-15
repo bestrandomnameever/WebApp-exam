@@ -6,6 +6,7 @@ body {
     color: $primary-text-color;
 
     small {
+        font-size: $font-size-small;
         color: $secondary-text-color;
     }
 }

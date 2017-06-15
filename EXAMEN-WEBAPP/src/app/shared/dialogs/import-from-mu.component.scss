@@ -1,0 +1,9 @@
+@import '../../../sass/_globals';
+
+.search-results {
+    &__result {
+        &.selected {
+            background-color: $primary-color-light;
+        }
+    }
+}

@@ -46,6 +46,8 @@ router.get('/findId/:id', function(req, res, next) {
             const title = $('.releasestitle').text();
             const imgUrl = findsContentWithsCat($, 'Image').find('img').attr('src');
             const synopsis = findsContentWithsCat($, 'Description').text().replace(/\n$/, "");
+            const author = findsContentWithsCat($, 'Author(s)').text().replace(/\n$/, "");
+            const artist = findsContentWithsCat($, 'Artist(s)').text().replace(/\n$/, "");
             const type = findsContentWithsCat($, 'Type').text().replace(/\n$/, "");
             const scanlated = findsContentWithsCat($, 'Completely Scanlated?').text().replace(/\n$/, "") === 'Yes';
 
@@ -71,6 +73,8 @@ router.get('/findId/:id', function(req, res, next) {
                 manga: {
                     title: title,
                     associatedNames: associatedNames,
+                    author: author,
+                    artist: artist,
                     imgUrl: imgUrl,
                     synopsis: synopsis,
                     type: type,

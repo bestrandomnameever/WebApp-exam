@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { CoverPickerDialog } from './cover-picker.component';
+import { ImportFromMangaUpdatesComponent } from './import-from-mu.component';
 import { DialogsService } from './dialogs.service';
 
 
 @NgModule({
     declarations: [
-        CoverPickerDialog
+        CoverPickerDialog,
+        ImportFromMangaUpdatesComponent
     ],
     imports: [
         CommonModule,
@@ -17,13 +19,15 @@ import { DialogsService } from './dialogs.service';
         MaterialModule
     ],
     exports: [
-        CoverPickerDialog
+        CoverPickerDialog,
+        ImportFromMangaUpdatesComponent
     ],
     providers: [
         DialogsService,
     ],
     entryComponents: [
-        CoverPickerDialog
+        CoverPickerDialog,
+        ImportFromMangaUpdatesComponent
     ]
 })
 export class DialogsModule { }

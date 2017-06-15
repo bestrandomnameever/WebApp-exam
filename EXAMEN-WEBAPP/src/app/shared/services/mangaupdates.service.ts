@@ -13,4 +13,8 @@ export class MangaUpdatesService {
             return res.manga
         });
     }
+
+    getMangaIdsMatchingSearch(searchterm: string): Promise<any> {
+        return this.apiService.get("/mangaupdates/search/" + searchterm).toPromise();
+    }
 }

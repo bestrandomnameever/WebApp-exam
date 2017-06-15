@@ -7,7 +7,7 @@ import { MangaCoversDBService } from '../';
 @Component({
     selector: 'cover-picker-dialog',
     templateUrl: './cover-picker.component.html',
-    styleUrls: ['./cover-picker.component.scss']
+    styleUrls: ['./general.scss','./cover-picker.component.scss']
 })
 export class CoverPickerDialog {
     id: string;
@@ -77,6 +77,7 @@ export class CoverPickerDialog {
     }
 
     toggleSelectTitle(id: string, index: number) {
+        console.log(id, index);
         if (this.selectedTitleIndex == undefined) {
             this.selectedTitleIndex = index;
             this.coverdbservice.getCoversFromuID(id).then(res => {
@@ -99,6 +100,14 @@ export class CoverPickerDialog {
             this.selectedCover = cover;
             this.isSelectedCover = true;
         }
+    }
+
+    cancelDialog() {
+        this.dialogRef.close();
+    }
+
+    submitDialog() {
+        this.dialogRef.close(this.selectedCover);
     }
 }
 

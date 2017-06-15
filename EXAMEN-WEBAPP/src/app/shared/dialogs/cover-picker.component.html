@@ -1,9 +1,9 @@
-<div class="cover-picker-dialog">
+<div class="dialog">
     <md-tab-group (selectChange)="resetCoversArrays($event)">
         <!--SEARCH BY TITLE-->
         <md-tab label="MangacoverDB search">
             <div class="tab-content">
-                <div class="tab-content__searchbar">
+                <div class="searchbar">
                     <md-input-container>
                         <input mdInput
                                placeholder="Search for title"
@@ -14,10 +14,10 @@
                             md-button
                             (click)="searchForTitle()">Search</button>
                 </div>
-                <div class="tab-content__search-results"
+                <div class="search-results"
                      [ngClass]="{'itemSelected': selectedTitleIndex != undefined}">
                     <div *ngFor="let searchResult of searchResults; let i = index"
-                         class="tab-content__search-results__result"
+                         class="search-results__result"
                          [ngClass]="{'selected': i == selectedTitleIndex }"
                          (click)="toggleSelectTitle(searchResult.id, i)">
                         <span>{{searchResult.title}}</span>
@@ -85,10 +85,10 @@
     <div class="dialog-buttons">
         <button type="button"
                 md-button
-                (click)="dialogRef.close()">Cancel</button>
+                (click)="cancelDialog()">Cancel</button>
         <button type="button"
                 md-raised-button
                 [disabled]="!isSelectedCover"
-                (click)="dialogRef.close(selectedCover)">OK</button>
+                (click)="submitDialog()">OK</button>
     </div>
 </div>

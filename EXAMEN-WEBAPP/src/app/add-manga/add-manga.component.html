@@ -21,8 +21,9 @@
             <tag-input [(ngModel)]='manga.alternativeTitles'
                        name="alternative titles"
                        theme='weeb-theme'
-                       [secondaryPlaceholder]='"Add some alternative names"'
-                       [placeholder]='"Add more"'>
+                       [modelAsStrings]='true'
+                       [placeholder]='"Add more"'
+                       [secondaryPlaceholder]='"Add some alternative names"'>
             </tag-input>
 
             <md-input-container>
@@ -58,21 +59,13 @@
             <md-select [(ngModel)]="manga.type"
                        name="type"
                        placeholder="Type">
-                <md-option>Manga</md-option>
-                <md-option>Artbook</md-option>
-                <md-option>Doujinshi</md-option>
-                <md-option>Drama CD</md-option>
-                <md-option>Manhwa</md-option>
-                <md-option>Manhua</md-option>
-                <md-option>Thai</md-option>
-                <md-option>Indonesian</md-option>
-                <md-option>Novel</md-option>
-                <md-option>OEL</md-option>
-                <md-option>Filipino</md-option>
+                <md-option *ngFor="let type of types"
+                           [value]="type">{{type}}</md-option>
             </md-select>
 
-            <md-checkbox [checked]="true"
-                         name="scanlated">
+            <md-checkbox name="scanlated"
+                         [checked]="manga.isCompleted"
+                         (change)="manga.isCompleted = $event.checked">
                 Completely Scanlated?
             </md-checkbox>
 
@@ -88,19 +81,21 @@
         <tag-input [(ngModel)]='manga.genres'
                    name="genres"
                    theme='weeb-theme'
-                   [secondaryPlaceholder]='"Add some genres"'
+                   [onlyFromAutocomplete]="true"
+                   [modelAsStrings]='true'
                    [placeholder]='"Add more"'
-                   [onlyFromAutocomplete]="true">
-            <tag-input-dropdown [showDropdownIfEmpty]="true"
-                                [autocompleteItems]="genres">
+                   [secondaryPlaceholder]='"Add some genres"'>
+            <tag-input-dropdown [autocompleteItems]="genres"
+                                [showDropdownIfEmpty]="true">
             </tag-input-dropdown>
         </tag-input>
 
         <tag-input [(ngModel)]='manga.categories'
                    name="categories"
                    theme='weeb-theme'
-                   [secondaryPlaceholder]='"Add some categories"'
+                   [modelAsStrings]='true'
                    [placeholder]='"Add more"'
+                   [secondaryPlaceholder]='"Add some categories"'
                    [transform]="transformLowerCasedCapitalized">
             <tag-input-dropdown [showDropdownIfEmpty]="true"
                                 [autocompleteItems]="categories">
@@ -110,16 +105,10 @@
     <div class="mu-import-container">
         <span>OR</span>
         <div>
-            <md-input-container>
-                <input mdInput
-                       [(ngModel)]="muUrlOrId"
-                       name="MU URL-ID"
-                       placeholder="Mangaupdates URL or ID">
-            </md-input-container>
             <button class=""
-            md-raised-button
-            [color]="'primary'"
-            (click)="importFromIdOrUrl()">IMPORT</button>
+                    md-raised-button
+                    [color]="'primary'"
+                    (click)="openImportFromMuDialog()">IMPORT</button>
         </div>
     </div>
     <button class="submit-btn"

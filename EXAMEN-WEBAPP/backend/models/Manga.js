@@ -1,29 +1,32 @@
 var mongoose = require('mongoose');
 
 var MangaSchema = new mongoose.Schema({
-    title: String,
     alternativeTitles: [String],
-    coverUrl: String,
-    synopsis: String,
-    author: String,
     artist: String,
-    type: String,
+    author: String,
+    categories: [String],
+    coverUrl: String,
     genres: [String],
-    categories: [String]
+    isCompleted: Boolean,
+    synopsis: String,
+    title: String,
+    type: String 
 });
 
 MangaSchema.methods.toJSON = function() {
     return {
         _id: this._id,
-        title: this.title,
+
         alternativeTitles: this.alternativeTitles,
-        coverUrl: this.coverUrl,
-        synopsis: this.synopsis,
-        author: this.author,
         artist: this.artist,
-        type: this.type,
+        author: this.author,
+        categories: this.categories,
+        coverUrl: this.coverUrl,
         genres: this.genres,
-        categories: this.categories
+        isCompleted: this.isCompleted,
+        synopsis: this.synopsis,
+        title: this.title,
+        type: this.type,
     };
 };
 

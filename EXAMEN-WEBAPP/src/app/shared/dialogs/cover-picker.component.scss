@@ -1,58 +1,8 @@
-@import '../../../sass/_globals';
-
-.cover-picker-dialog {
-    display: flex;
-    max-width: 90vw;
-    max-height: 90vh;
-    height: 100%;
-
-    overflow-y: auto;
-
-    flex-direction: column;
-
-    /deep/ md-tab-header {
-        margin-bottom: 1rem;
-    }
-
-    /deep/ md-tab-group {
-        flex-grow: 1;
-
-        .tab-content {
-            display: flex;
-            height: 100%;
-
-            flex-direction: column;
-
-            &__searchbar {
-                //display: flex;
-            }
-
-            &__search-results {
-                margin: 0 0.5rem 0.5rem;
-                box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
-
-                &__result {
-                    padding: 0.5rem;
-
-                    transition: background-color 200ms;
-                    cursor: pointer;
-
-                    &:not(:last-child) {
-                        border-bottom: 1px solid $divider-color;
-                    }
-
-                    &:hover {
-                        background-color: $primary-color-light;
-                    }
-                }
-
-                &.itemSelected {
-                    > div:not(.selected) {
-                        display: none;
-                    }
-
-                    .selected {
-                        position: relative;
+.search-results {
+    &.itemSelected {
+        .search-results__result {
+            &.selected {
+                position: relative;
                         background-color: white;
 
                         &::after {
@@ -74,44 +24,11 @@
                         &:hover {
                             background-color: #f0f0f0;
                         }
-                    }
-                }
             }
 
-            .cover-results {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-
-                overflow-y: auto;
-
-                .cover-results__result {
-                    box-sizing: border-box;
-
-                    width: calc(33% - 0.4rem);
-                    margin: 0.25rem 0;
-                    border: 3px solid transparent;
-
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center; //Create height with correct aspect ratio
-                    &::before {
-                        display: block;
-                        content: "";
-                        width: 100%;
-                        padding-top: 157%;
-                    }
-
-                    &.selected {
-                        border: 3px solid $primary-color;
-                    }
-                }
-            }
+            &:not(.selected) {
+                display: none;
+            } 
         }
-    }
-
-    .dialog-buttons {
-        margin-top: 0.5rem;
-        text-align: right;
     }
 }

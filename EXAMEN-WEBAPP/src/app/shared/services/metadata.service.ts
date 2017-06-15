@@ -6,6 +6,8 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class MetadataService {
 
+    types = ["Manga","Artbook", "Doujinshi","Drama CD","Manhwa","Manhua","Thai","Indonesian","Novel","OEL","Filipino"];
+
     constructor(
         private apiService: ApiService
     ){}
@@ -16,6 +18,10 @@ export class MetadataService {
 
     getAllArtists(from: number = 0, to: number = 100): Promise<string[]> {
         return this.apiService.get('/meta/artists').toPromise().then(data => data.artists);
+    }
+
+    getAllTypes(): Promise<string[]>{
+        return Promise.resolve(this.types);
     }
 
     getAllGenres(from: number = 0, to: number = 100): Promise<string[]> {

@@ -1,65 +1,77 @@
 @import '../../sass/_globals';
 
-md-input-container {
-    width: 100%;
-}
-
 form.add-manga-form {
-    padding: 2rem;
+    padding: 1rem;
 
-    .two-column-layout {
+    .cover-with-detail-container {
         display: flex;
+        flex-direction: column;
+        align-content: center;
 
-        >* {
-            &:first-of-type {
-                width: 30%;
-                margin-right: 5%;
+        &__cover {
+            width: 18.75rem;
+            max-width: 100%;
+
+            margin: 0 auto 1rem;
+
+            .cover-img {
+                position: relative;
+                height: 0;
+                padding-bottom: 140%;
+
+                background-size: cover;
+                background-color: $divider-color;
+
+                &__edit-menu {
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+
+                    background-color: rgba(black, 0.8);
+
+                    opacity: 0;
+                    transition: opacity 400ms;
+                }
+
+                &:hover {
+                    .cover-img__edit-menu {
+                        opacity: 1;
+                    }
+                }
             }
+        }
 
-            &:last-of-type {
-                width: 65%;
-            }
+        &__detail {
+            display: flex;
+            flex-direction: column;
 
-            .manga-img {
-                width: 100%;
+            flex-grow: 1;
+
+            textarea {
+                height: 9rem;
             }
         }
     }
 
-    .cover-img {
-        position: relative;
-        height: 0;
-        padding-bottom: 140%;
+    .mu-import-container {
+        margin: 1rem 3rem;
+        padding: 1rem;
+        border-radius: 3px;
 
-        background-size: cover;
+        background-color: rgba($divider-color, 0.3);
+        text-align: center;
 
-        &__edit-menu {
-            display: none;
-            position: absolute;
-
-            top: 50%;
-            left: 1rem;
-            right: 1rem;
-            transform: translateY(-50%);
-
-            color: white;
-            text-align: center;
-
-            opacity: 0;
-            transition: opacity 1s;
-        }
-
-        &:hover {
-            .cover-img__edit-menu {
-                display: block;
-                background-color: rgba(black, 0.8);
-
-                opacity: 1;
-            }
+        span {
+            display: block;
+            margin-bottom: 1rem; 
         }
     }
-
-    .mu-import-container {}
 
     .submit-btn {
         display: block;
@@ -68,5 +80,22 @@ form.add-manga-form {
         font-weight: 700;
         text-transform: uppercase;
         color: $light-text-color;
+    }
+
+    @media only screen and (min-width: 768px) {
+        padding: 2rem;
+
+        .cover-with-detail-container {
+            flex-direction: row;
+
+            &__cover {
+                width: 30%;
+                min-width: 15rem;
+                max-width: 22rem;
+
+                padding: 0;
+                margin-right: 5%;
+            }
+        }
     }
 }

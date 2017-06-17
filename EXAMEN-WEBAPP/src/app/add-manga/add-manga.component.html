@@ -1,6 +1,6 @@
 <form class="add-manga-form">
-    <div class="two-column-layout">
-        <div>
+    <div class="cover-with-detail-container">
+        <div class="cover-with-detail-container__cover">
             <div class="cover-img"
                  [ngStyle]="{'background-image': 'url(' + manga.coverUrl + ')'}">
                 <div class="cover-img__edit-menu">
@@ -10,7 +10,7 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div class="cover-with-detail-container__detail">
             <md-input-container>
                 <input mdInput
                        [(ngModel)]="manga.title"
@@ -104,12 +104,10 @@
     </div>
     <div class="mu-import-container">
         <span>OR</span>
-        <div>
-            <button class=""
-                    md-raised-button
-                    [color]="'primary'"
-                    (click)="openImportFromMuDialog()">IMPORT</button>
-        </div>
+        <button class=""
+                md-raised-button
+                [color]="'primary'"
+                (click)="openImportFromMuDialog()">IMPORT</button>
     </div>
     <button class="submit-btn"
             md-raised-button

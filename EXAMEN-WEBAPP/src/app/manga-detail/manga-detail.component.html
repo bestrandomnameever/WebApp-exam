@@ -1,0 +1,46 @@
+<div class="manga-detail-root">
+    <div class="img-info-cols">
+        <div class="img-info-cols__img">
+            <img src="{{coverUrl}}"
+                 alt="">
+        </div>
+        <div class="img-info-cols__info">
+            <h1 class="manga__title">{{title}}</h1>
+            <small class="label">Also known as</small>
+            <div class="manga__alternative-titles">
+                <div class="chip"
+                     *ngFor="let title of alternativeTitles">{{title}}</div>
+            </div>
+            <small class="label">Synopsis</small>
+            <perfect-scrollbar class="manga__synopsis">
+                {{synopsis}}
+            </perfect-scrollbar>
+            <small class="label">Author</small>
+            <a href="#"
+               class="chip chip--link">{{author}}</a>
+            <small class="label">Artist</small>
+            <a href="#"
+               class="chip chip--link">{{artist}}</a>
+            <small class="label">Type</small>
+            <span>{{type}}</span>
+            <small class="label">Completely scanlated</small>
+            <div class="manga__completed"
+                 [ngClass]="{'is-completed': isCompleted}">
+            </div>
+        </div>
+    </div>
+    <div>
+        <small class="label">Genres</small>
+        <div class="manga__genres">
+            <a href=""
+               class="chip chip--link"
+               *ngFor="let genre of genres">{{genre}}</a>
+        </div>
+        <small class="label">Categories</small>
+        <div class="manga__categories">
+            <a href=""
+               class="chip chip--link"
+               *ngFor="let category of categories">{{category}}</a>
+        </div>
+    </div>
+</div>

@@ -6,9 +6,10 @@ import { RouterModule } from '@angular/router';
 
 import { HomeModule } from './home/home.module';
 import { AddMangaModule } from './add-manga/add-manga.module';
+import { MangaDetailModule } from './manga-detail/manga-detail.module';
 
 import { AppComponent } from './app.component';
-import { 
+import {
   ApiService,
   DialogsModule,
   MainNavComponent,
@@ -33,10 +34,11 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
     DialogsModule,
     FormsModule,
     HomeModule,
+    MangaDetailModule,
     HttpModule,
-    rootRouting,
     RouterModule,
-    SharedModule
+    SharedModule,
+    rootRouting
   ],
   providers: [
     ApiService,

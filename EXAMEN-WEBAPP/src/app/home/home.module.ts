@@ -10,9 +10,14 @@ import { MangaService } from 'app/shared'
 
 const homeRouting = RouterModule.forChild([
   {
-    path: '',
+    path: 'home',
     component: MangaCoverGridComponent
-  }
+  },
+  /*{
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  }*/
 ]);
 
 @NgModule({

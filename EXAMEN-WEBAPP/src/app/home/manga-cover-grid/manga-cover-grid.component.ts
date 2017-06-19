@@ -16,6 +16,9 @@ export class MangaCoverGridComponent implements OnInit {
   ngOnInit() {
     // this.mangas = new MangaDummyRepo().MANGAS;
     this.mangaService.getAllMangas().then(mangas => this.mangas = mangas);
+    this.mangaService.getMangaWithSlug('ai-ren').then(manga => {
+      console.log(manga);
+    })
   }
 
   openDetail(manga) {

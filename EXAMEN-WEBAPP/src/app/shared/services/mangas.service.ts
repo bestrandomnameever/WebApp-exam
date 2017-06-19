@@ -1,4 +1,3 @@
-import { DummyRepo } from 'app/DummyRepo';
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 
@@ -8,9 +7,6 @@ import { Manga } from '../';
 
 @Injectable()
 export class MangaService {
-
-    mangas = new DummyRepo().MANGAS;
-
     constructor(
         private apiService: ApiService
     ) {}

@@ -1,7 +1,7 @@
 @import '../../sass/_globals';
 
 form.add-manga-form {
-    padding: 1rem;
+    padding: $page-padding;
 
     .cover-with-detail-container {
         display: flex;

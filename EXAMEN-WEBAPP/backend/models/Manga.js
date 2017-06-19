@@ -12,7 +12,7 @@ var MangaSchema = new mongoose.Schema({
     isCompleted: Boolean,
     slug: {type: String, lowercase: true, unique:true},
     synopsis: String,
-    title: {type: String, required: true},
+    title: {type: String, required: true, unique: true},
     type: String 
 });
 

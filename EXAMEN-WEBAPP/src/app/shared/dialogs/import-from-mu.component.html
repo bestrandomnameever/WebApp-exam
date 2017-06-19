@@ -1,0 +1,40 @@
+<div class="dialog">
+    <md-tab-group>
+        <md-tab label="Search">
+            <div class="tab-content">
+                <div class="searchbar">
+                <md-input-container>
+                    <input mdInput
+                           placeholder="Search for title"
+                           [(ngModel)]="titleSearchField"
+                           (keyup.enter)="searchForTitle()">
+                </md-input-container>
+                <button type="button"
+                        md-button
+                        (click)="searchForTitle()">Search</button>
+            </div>
+            <div class="search-results">
+                <div *ngFor="let searchResult of searchResults; let i = index"
+                     class="search-results__result"
+                     [ngClass]="{'selected': i == selectedIndex}"
+                     (click)="toggleSelectTitle(i)">
+                    <span>{{searchResult.title}}</span>
+                    <small>{{searchResult.genres}}</small>
+                </div>
+            </div>
+            </div>
+        </md-tab>
+        <md-tab label="With ID or URL">
+
+        </md-tab>
+    </md-tab-group>
+    <div class="dialog-buttons">
+        <button type="button"
+                md-button
+                (click)="cancelDialog()">Cancel</button>
+        <button type="button"
+                md-raised-button
+                [disabled]="selectedId == undefined"
+                (click)="submitDialog()">OK</button>
+    </div>
+</div>

@@ -5,12 +5,19 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { HomeModule } from './home/home.module';
+import { AddMangaModule } from './add-manga/add-manga.module';
 
 import { AppComponent } from './app.component';
 import { 
+  ApiService,
+  DialogsModule,
+  MainNavComponent,
+  MangaService,
+  MangaUpdatesService,
+  MetadataService,
   SharedModule,
-  MainNavComponent
 } from './shared';
+import { MangaCoversDBService } from './shared/services/mangacoverdb.service';
 
 
 const rootRouting = RouterModule.forRoot([], { useHash: true });
@@ -21,7 +28,9 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
     MainNavComponent
   ],
   imports: [
+    AddMangaModule,
     BrowserModule,
+    DialogsModule,
     FormsModule,
     HomeModule,
     HttpModule,
@@ -29,7 +38,13 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
     RouterModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    MangaCoversDBService,
+    MangaService,
+    MangaUpdatesService,
+    MetadataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,6 +9,8 @@ $gutter-width: 5px;
         width: calc(100% - (2 * #{$gutter-width}));
         margin: #{$gutter-width} #{$gutter-width};
 
+        z-index: 1;
+
         @for $multiplier from 1 through 13  {
             $result: ($mangaCoverMinWidth + (2 * $gutter-width)) * $multiplier;
             @media screen and (min-width: #{$result}) {

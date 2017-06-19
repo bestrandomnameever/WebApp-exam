@@ -1,2 +1,5 @@
 export * from './shared.module';
-export * from './main-nav/main-nav.component';
+export * from './components';
+export * from './services';
+export * from './dialogs';
+export * from './classes';

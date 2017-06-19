@@ -1,0 +1,116 @@
+<form class="add-manga-form">
+    <div class="cover-with-detail-container">
+        <div class="cover-with-detail-container__cover">
+            <div class="cover-img"
+                 [ngStyle]="{'background-image': 'url(' + manga.coverUrl + ')'}">
+                <div class="cover-img__edit-menu">
+                    <button md-raised-button
+                            [color]="'accent'"
+                            (click)='openSelectCoverDialog()'>EDIT</button>
+                </div>
+            </div>
+        </div>
+        <div class="cover-with-detail-container__detail">
+            <md-input-container>
+                <input mdInput
+                       [(ngModel)]="manga.title"
+                       name="title"
+                       placeholder="Title">
+            </md-input-container>
+
+            <tag-input [(ngModel)]='manga.alternativeTitles'
+                       name="alternative titles"
+                       theme='weeb-theme'
+                       [modelAsStrings]='true'
+                       [placeholder]='"Add more"'
+                       [secondaryPlaceholder]='"Add some alternative names"'>
+            </tag-input>
+
+            <md-input-container>
+                <input mdInput
+                       [(ngModel)]="manga.author"
+                       name="author"
+                       [mdAutocomplete]="authorAuto"
+                       placeholder="Author">
+            </md-input-container>
+
+            <md-autocomplete #authorAuto="mdAutocomplete">
+                <md-option *ngFor="let author of authors"
+                           [value]="author">
+                    {{ author }}
+                </md-option>
+            </md-autocomplete>
+
+            <md-input-container>
+                <input mdInput
+                       [(ngModel)]="manga.artist"
+                       name="artist"
+                       [mdAutocomplete]="artistAuto"
+                       placeholder="Artist">
+            </md-input-container>
+
+            <md-autocomplete #artistAuto="mdAutocomplete">
+                <md-option *ngFor="let artist of artists"
+                           [value]="artist">
+                    {{ artist }}
+                </md-option>
+            </md-autocomplete>
+
+            <md-select [(ngModel)]="manga.type"
+                       name="type"
+                       placeholder="Type">
+                <md-option *ngFor="let type of types"
+                           [value]="type">{{type}}</md-option>
+            </md-select>
+
+            <md-checkbox name="scanlated"
+                         [checked]="manga.isCompleted"
+                         (change)="manga.isCompleted = $event.checked">
+                Completely Scanlated?
+            </md-checkbox>
+
+            <md-input-container>
+                <textarea mdInput
+                          [(ngModel)]="manga.synopsis"
+                          name="synopsis"
+                          placeholder="Synopsys"></textarea>
+            </md-input-container>
+        </div>
+    </div>
+    <div>
+        <tag-input [(ngModel)]='manga.genres'
+                   name="genres"
+                   theme='weeb-theme'
+                   [onlyFromAutocomplete]="true"
+                   [modelAsStrings]='true'
+                   [placeholder]='"Add more"'
+                   [secondaryPlaceholder]='"Add some genres"'>
+            <tag-input-dropdown [autocompleteItems]="genres"
+                                [showDropdownIfEmpty]="true">
+            </tag-input-dropdown>
+        </tag-input>
+
+        <tag-input [(ngModel)]='manga.categories'
+                   name="categories"
+                   theme='weeb-theme'
+                   [modelAsStrings]='true'
+                   [placeholder]='"Add more"'
+                   [secondaryPlaceholder]='"Add some categories"'
+                   [transform]="transformLowerCasedCapitalized">
+            <tag-input-dropdown [showDropdownIfEmpty]="true"
+                                [autocompleteItems]="categories">
+            </tag-input-dropdown>
+        </tag-input>
+    </div>
+    <div class="mu-import-container">
+        <span>OR</span>
+        <button class=""
+                md-raised-button
+                [color]="'primary'"
+                (click)="openImportFromMuDialog()">IMPORT</button>
+    </div>
+    <button class="submit-btn"
+            md-raised-button
+            [color]="'accent'"
+            (click)="submit()">Submit</button>
+</form>

@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Manga = mongoose.model('Manga');
 
 router.get('/', function(req, res, next) {
-    Manga.find().then(function (mangas) {
+    Manga.find().sort({title: 1}).then(function (mangas) {
         console.log(mangas);
         return res.json({mangas: mangas});
     }).catch(next);

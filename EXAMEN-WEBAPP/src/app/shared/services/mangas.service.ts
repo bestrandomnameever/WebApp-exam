@@ -16,13 +16,13 @@ export class MangaService {
     ) {}
 
     addManga(manga: Manga): Promise<Object> {
-        console.log(manga.toJSON());
+        //console.log(manga.toJSON());
          return this.apiService.post('/mangas', {
              "manga": manga.toJSON()
          }).toPromise();
     }
 
     getAllMangas(from: number = 0, to: number = 100): Promise<any[]> {
-        return Promise.resolve(this.mangas.slice(from, to));
+        return this.apiService.get('/mangas').toPromise().then(res => res.mangas);
     }
 }

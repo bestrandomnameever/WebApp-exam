@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
+var slug = require('slug');
 
 var MangaSchema = new mongoose.Schema({
     alternativeTitles: [String],
@@ -8,14 +10,28 @@ var MangaSchema = new mongoose.Schema({
     coverUrl: String,
     genres: [String],
     isCompleted: Boolean,
+    slug: {type: String, lowercase: true, unique:true},
     synopsis: String,
-    title: String,
+    title: {type: String, required: true},
     type: String 
 });
+
+MangaSchema.plugin(uniqueValidator, {message: 'is already taken'});
+
+MangaSchema.pre('validate', function (next) {
+    this.slugify();
+
+    next();
+})
+
+MangaSchema.methods.slugify = function () {
+    this.slug = slug(this.title);
+}
 
 MangaSchema.methods.toJSON = function() {
     return {
         _id: this._id,
+        slug: this.slug,
 
         alternativeTitles: this.alternativeTitles,
         artist: this.artist,

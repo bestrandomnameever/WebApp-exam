@@ -1,4 +1,6 @@
 export class Manga {
+    slug: string;
+
     alternativeTitles: string[];
     artist: string;
     author: string;

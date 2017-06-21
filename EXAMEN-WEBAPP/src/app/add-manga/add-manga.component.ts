@@ -99,9 +99,10 @@ export class AddMangaComponent implements OnInit {
 	}
 
 	submit() {
-		//console.log(this.manga.toJSON());
 		this.mangaService.addManga(this.manga).then(res => {
 			console.log(res);
+		}).catch(err => {
+			console.log(err);
 		});
 	}
 

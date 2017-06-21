@@ -71,17 +71,16 @@ router.get('/findId/:id', function(req, res, next) {
 
             return res.json({
                 manga: {
-                    title: title,
                     associatedNames: associatedNames,
-                    author: author,
                     artist: artist,
-                    imgUrl: imgUrl,
-                    synopsis: synopsis,
-                    type: type,
-                    scanlated: scanlated,
-
+                    author: author,
+                    categories: categories,
                     genres: genres,
-                    categories: categories
+                    imgUrl: imgUrl,
+                    scanlated: scanlated,
+                    synopsis: synopsis,
+                    title: title,                    
+                    type: type                    
                 }
             });
         }).catch(function(error) {

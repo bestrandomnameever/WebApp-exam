@@ -3,11 +3,25 @@ var mongoose = require('mongoose');
 
 var Manga = mongoose.model('Manga');
 
+router.param('manga', function (req, res, next, slug) {
+    Manga.findOne({slug: slug})
+    .then(function (manga) {
+        if (!manga) { return res.sendStatus(404); }
+
+        req.manga = manga;
+
+        return next()
+    }).catch(next);
+})
+
 router.get('/', function(req, res, next) {
-    Manga.find().then(function (mangas) {
-        console.log(mangas);
+    Manga.find().sort({title: 1}).then(function (mangas) {
         return res.json({mangas: mangas});
     }).catch(next);
+});
+
+router.get('/:manga', function (req, res, next) {
+    return res.json(req.manga.toJSON());
 });
 
 router.post('/', function(req, res, next) {
@@ -28,7 +42,7 @@ router.post('/', function(req, res, next) {
         return res.json({
             manga: manga.toJSON()
         });
-    });
+    }).catch(next);
 });
 
 module.exports = router;

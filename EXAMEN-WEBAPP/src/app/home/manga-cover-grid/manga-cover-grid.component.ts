@@ -10,16 +10,14 @@ import { MangaService } from 'app/shared';
 export class MangaCoverGridComponent implements OnInit {
 
   mangas;
+  loading: boolean = true;
 
   constructor(private mangaService : MangaService) { }
 
   ngOnInit() {
-    // this.mangas = new MangaDummyRepo().MANGAS;
-    this.mangaService.getAllMangas().then(mangas => this.mangas = mangas);
+    this.mangaService.getAllMangas().then(mangas => {
+      this.mangas = mangas;
+      this.loading = false;
+    });
   }
-
-  openDetail(manga) {
-    console.log(manga.title);
-  }
-
 }

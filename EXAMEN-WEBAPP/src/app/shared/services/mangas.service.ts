@@ -34,6 +34,10 @@ export class MangaService {
         return this.apiService.get('/mangas').toPromise().then(res => res.mangas);
     }
 
+    getMangasMatching(searchTerm: String): Promise<any[]> {
+        return this.apiService.get('/mangas/search/' + searchTerm).toPromise();
+    }
+
     addManga(manga: Manga): Promise<Object> {
         //console.log(manga.toJSON());
          return this.apiService.post('/mangas', {

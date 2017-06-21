@@ -4,15 +4,27 @@
       <img src="../../assets/logo.png" alt="">
     </a>
   </div>
+  <div class="main-nav__searchbar">
+    <input class="main-nav__searchbar__input"
+           type="search"
+           name="search"
+           value=""
+           [(ngModel)]="searchTerm"
+           (click) = "navigateToHome()"
+           (keyup) = "search()"
+           (keyup.enter)="search()">
+  </div>
   <ul class="main-nav__menu">
-    <a routerLink="/" routerLinkActive="active">
+    <a routerLink="/"
+       routerLinkActive="active">
       <li>Home</li>
     </a>
-    <a routerLink="add" routerLinkActive="active">
+    <a routerLink="add"
+       routerLinkActive="active">
       <li>Add a manga</li>
     </a>
   </ul>
   <div class="main-nav__user-avatar">
-    
+
   </div>
 </nav>

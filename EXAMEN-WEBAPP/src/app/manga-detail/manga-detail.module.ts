@@ -5,16 +5,21 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { MangaDetailComponent } from './manga-detail.component';
 
+import { MangaResolver } from './manga-resolver.service';
+
 const homeRouting = RouterModule.forChild([
   {
-    path: 'manga',
-    component: MangaDetailComponent
-  },
+    path: 'manga/:slug',
+    component: MangaDetailComponent,
+    resolve: {
+      manga: MangaResolver
+    }
+  }/*,
   {
     path: '',
     redirectTo: 'manga',
     pathMatch: 'full'
-  }
+  }*/
 ]);
 
 @NgModule({
@@ -24,6 +29,8 @@ const homeRouting = RouterModule.forChild([
     homeRouting,
     PerfectScrollbarModule
   ],
-  providers: []
+  providers: [
+    MangaResolver
+  ]
 })
 export class MangaDetailModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manga-cover',
@@ -8,17 +9,23 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MangaCoverComponent implements OnInit {
 
   @Input()
+  mangaSlug: string;
+  @Input()
   mangaName: string;
-
   @Input()
   mangaCoverUrl: string;
-
   @Input()
   mangaSynopsis: string;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  openDetail() {
+    this.router.navigateByUrl('/manga/' + this.mangaSlug);
   }
 
 }

@@ -18,6 +18,7 @@ export class MangaService {
             
             manga.alternativeTitles = res.alternativeTitles;
             manga.artist = res.artist;
+            manga.author = res.author;
             manga.categories = res.categories;
             manga.coverUrl = res.coverUrl;
             manga.genres = res.genres;

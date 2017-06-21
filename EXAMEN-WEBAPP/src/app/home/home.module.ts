@@ -6,18 +6,19 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { MangaCoverComponent } from './manga-cover/manga-cover.component';
 import { MangaCoverGridComponent } from './manga-cover-grid/manga-cover-grid.component';
 
-import { MangaService } from 'app/shared'
+import { MangaService } from 'app/shared';
+import { MdProgressSpinnerModule } from '@angular/material';
 
 const homeRouting = RouterModule.forChild([
   {
     path: 'home',
     component: MangaCoverGridComponent
   },
-  /*{
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  }*/
+  }
 ]);
 
 @NgModule({
@@ -28,6 +29,7 @@ const homeRouting = RouterModule.forChild([
     imports: [ 
         homeRouting,
         CommonModule,
+        MdProgressSpinnerModule,
         PerfectScrollbarModule,
         RouterModule
     ],

@@ -1,3 +1,14 @@
 <div class="manga-cover-grid">
-  <app-manga-cover *ngFor="let manga of mangas" [mangaName]="manga.title" [mangaCoverUrl]="manga.coverUrl" [mangaSynopsis]="manga.synopsis" class="manga-cover-grid__cover" (click)="openDetail(manga)"></app-manga-cover>
+  <div class="loading-mangas"
+       *ngIf="loading; else mangacovers">
+    <md-spinner></md-spinner>
+  </div>
+  <ng-template #mangacovers>
+    <app-manga-cover *ngFor="let manga of mangas"
+                     class="manga-cover-grid__cover"
+                     [mangaSlug]="manga.slug"
+                     [mangaName]="manga.title"
+                     [mangaCoverUrl]="manga.coverUrl"
+                     [mangaSynopsis]="manga.synopsis"></app-manga-cover>
+  </ng-template>
 </div>

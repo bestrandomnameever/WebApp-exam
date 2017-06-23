@@ -4,8 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { HomeModule } from './home/home.module';
+import { AuthModule } from './auth/auth.module';
 import { AddMangaModule } from './add-manga/add-manga.module';
+import { HomeModule } from './home/home.module';
 import { MangaDetailModule } from './manga-detail/manga-detail.module';
 
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
   ],
   imports: [
     AddMangaModule,
+    AuthModule,
     BrowserModule,
     DialogsModule,
     FormsModule,

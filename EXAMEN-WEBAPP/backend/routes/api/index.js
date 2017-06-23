@@ -1,5 +1,6 @@
 var router = require('express').Router();
 
+router.use('/', require('./users'));
 router.use('/mangas', require('./mangas'));
 router.use('/meta', require('./metadata'));
 router.use('/mangaupdates', require('./mangaupdates'));

@@ -7,16 +7,18 @@ import { MdInputModule } from "@angular/material";
 
 import { AuthComponent } from './auth.component';
 
+import { NoAuthGuardService } from './../shared/services/no-auth-guard.service';
+
 const authRouting = RouterModule.forChild([
     {
         path: 'login',
         component: AuthComponent,
-        //canActivate: [NoAuthGuard]
+        //canActivate: [NoAuthGuardService]
     },
     {
         path: 'register',
         component: AuthComponent,
-        //canActivate: [NoAuthGuard]
+        //canActivate: [NoAuthGuardService]
     }
 ]);
 

@@ -1,3 +1,4 @@
+import { AuthGuardService } from './../shared/services/auth-guard.service';
 import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -17,9 +18,10 @@ import { AddMangaComponent } from './add-manga.component';
 const addMangaRouting = RouterModule.forChild([
   {
     path: "add",
-    component: AddMangaComponent
+    component: AddMangaComponent,
+    canActivate: [AuthGuardService]
   }
-])
+]);
 
 @NgModule({
   imports: [

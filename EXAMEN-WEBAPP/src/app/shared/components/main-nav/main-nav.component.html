@@ -10,8 +10,8 @@
            name="search"
            value=""
            [(ngModel)]="searchTerm"
-           (click) = "navigateToHome()"
-           (keyup) = "search()"
+           (click)="navigateToHome()"
+           (keyup)="search()"
            (keyup.enter)="search()">
   </div>
   <ul class="main-nav__menu">
@@ -22,6 +22,10 @@
     <a routerLink="add"
        routerLinkActive="active">
       <li>Add a manga</li>
+    </a>
+    <a routerLink="auth"
+       routerLinkActive="active">
+      <li>Log in</li>
     </a>
   </ul>
   <div class="main-nav__user-avatar">

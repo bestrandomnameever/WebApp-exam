@@ -41,11 +41,11 @@
               {{ title }}
             </button>
             <a *ngIf="authType === 'register'"
-               [routerLink]="['/login']">
+               routerLink="/auth/login">
                 Already have an account?
                </a>
             <a *ngIf="authType === 'login'"
-               [routerLink]="['/register']">
+               routerLink="/auth/register">
                 Make an account
                </a>
         </fieldset>

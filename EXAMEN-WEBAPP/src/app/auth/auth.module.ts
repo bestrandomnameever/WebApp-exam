@@ -11,12 +11,17 @@ import { NoAuthGuardService } from './../shared/services/no-auth-guard.service';
 
 const authRouting = RouterModule.forChild([
     {
-        path: 'login',
+        path: 'auth',
+        redirectTo: "auth/login",
+        pathMatch: "full"
+    },
+    {
+        path: 'auth/login',
         component: AuthComponent,
         //canActivate: [NoAuthGuardService]
     },
     {
-        path: 'register',
+        path: 'auth/register',
         component: AuthComponent,
         //canActivate: [NoAuthGuardService]
     }

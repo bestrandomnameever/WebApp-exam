@@ -2,6 +2,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
+import { UserService } from './../shared/services/user.service';
+
 @Component({
     selector: 'auth',
     templateUrl: './auth.component.html',
@@ -16,7 +18,8 @@ export class AuthComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private userService: UserService
     ) {
         this.authForm = this.fb.group({
             'email': ['', Validators.compose([Validators.email, Validators.required])],
@@ -42,5 +45,12 @@ export class AuthComponent implements OnInit {
         this.isSubmitting = true;
 
         const credentials = this.authForm.value;
+        this.userService.loginOrRegister(this.authType, credentials).then(res => {
+            console.log(res);
+            this.isSubmitting = false;
+        }).catch(err => {
+            console.log(err);
+            this.isSubmitting = false;
+        });
     }
 }

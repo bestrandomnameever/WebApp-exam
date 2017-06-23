@@ -21,6 +21,7 @@ import {
 } from './shared';
 import { MangaCoversDBService } from './shared/services/mangacoverdb.service';
 import { SearchService } from './shared/services/search.service';
+import { UserService } from './shared/services/user.service';
 
 
 const rootRouting = RouterModule.forRoot([], { useHash: true });
@@ -49,7 +50,8 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
     MangaService,
     MangaUpdatesService,
     MetadataService,
-    SearchService
+    SearchService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

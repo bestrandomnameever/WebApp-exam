@@ -23,7 +23,13 @@ app.use(express.static(path.join(__dirname, 'dist')));
 //Set up mongoose and connect to MongoDB DB
 mongoose.connect("mongodb://user:user@ds159387.mlab.com:59387/webappproject");
 mongoose.set('debug', true);
+
+//Load models
 require('./backend/models/Manga');
+require('./backend/models/User');
+
+//Load passport
+require('./backend/config/passport');
 
 // Set our api routes
 app.use(require('./backend/routes'));

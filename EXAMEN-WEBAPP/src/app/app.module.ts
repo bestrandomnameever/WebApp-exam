@@ -27,6 +27,8 @@ import { DialogsModule } from './shared/dialogs/dialogs.module';
 import { SharedModule } from './shared/shared.module';
 
 
+
+
 const rootRouting = RouterModule.forRoot([], { useHash: true });
 
 @NgModule({

@@ -24,8 +24,14 @@
       <li>Add a manga</li>
     </a>
     <a routerLink="auth"
-       routerLinkActive="active">
+       routerLinkActive="active"
+       *showToLoggedIn="false">
       <li>Log in</li>
+    </a>
+    <a (click)="logOut()"
+       href="javascript:void(0)"
+       *showToLoggedIn="true">
+      <li>Log out</li>
     </a>
   </ul>
   <div class="main-nav__user-avatar">

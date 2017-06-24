@@ -7,6 +7,8 @@ import { MangaDetailComponent } from './manga-detail.component';
 
 import { MangaResolver } from './manga-resolver.service';
 
+import { SharedModule } from './../shared/shared.module';
+
 const homeRouting = RouterModule.forChild([
   {
     path: 'manga/:slug',
@@ -27,7 +29,8 @@ const homeRouting = RouterModule.forChild([
   imports: [
     CommonModule,
     homeRouting,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    SharedModule
   ],
   providers: [
     MangaResolver

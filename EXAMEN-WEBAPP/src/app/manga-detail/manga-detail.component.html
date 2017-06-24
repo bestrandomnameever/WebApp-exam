@@ -43,4 +43,13 @@
                *ngFor="let category of manga.categories">{{category}}</a>
         </div>
     </div>
+    <div class="admin-actions"
+         *showToAdmin>
+        <a [routerLink]="['/edit', manga.slug]">
+             <i class="ion-edit"></i>
+         </a>
+        <a href="">
+            <i class="ion-trash-b"></i>
+        </a>
+    </div>
 </div>

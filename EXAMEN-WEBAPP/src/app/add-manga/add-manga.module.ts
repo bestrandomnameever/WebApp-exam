@@ -1,4 +1,3 @@
-import { AuthGuardService } from './../shared/services/auth-guard.service';
 import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -15,12 +14,14 @@ import { TagInputModule } from 'ng2-tag-input';
 
 import { AddMangaComponent } from './add-manga.component';
 
+import { AdminGuardService } from './../shared/services/admin-guard.service';
+
 import { MangaResolver } from './../manga-detail/manga-resolver.service';
 
 const addMangaRouting = RouterModule.forChild([
   {
     path: "edit",
-    canActivate: [AuthGuardService],
+    canActivate: [AdminGuardService],
     children: [
       {
         path: "",

@@ -17,6 +17,9 @@ export class UserService {
     private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
     public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
+    private isAdminSubject = new ReplaySubject<boolean>(1);
+    public isAdmin = this.isAdminSubject.asObservable();
+
     constructor(
         private apiService: ApiService,
         private jwtService: JwtService
@@ -45,6 +48,8 @@ export class UserService {
         this.currentUserSubject.next(user);
         // Set isAuthenticated to true
         this.isAuthenticatedSubject.next(true);
+        // Set is admin
+        this.isAdminSubject.next(user.isAdmin);
     }
 
     purgeAuth() {
@@ -54,6 +59,8 @@ export class UserService {
         this.currentUserSubject.next(new User());
         // Set auth status to false
         this.isAuthenticatedSubject.next(false);
+        // Set is admin to false
+        this.isAdminSubject.next(false);
     }
 
     loginOrRegister(type, credentials): Promise<User> {

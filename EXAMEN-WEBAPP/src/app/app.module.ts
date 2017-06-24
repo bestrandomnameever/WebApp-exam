@@ -12,6 +12,7 @@ import { MangaDetailModule } from './manga-detail/manga-detail.module';
 import { AppComponent } from './app.component';
 import { MainNavComponent } from './shared/components/main-nav/main-nav.component';
 
+import { AdminGuardService } from './shared/services/admin-guard.service';
 import { ApiService } from './shared/services/api.service';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { MangaService } from 'app/shared';
@@ -50,6 +51,7 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
     rootRouting
   ],
   providers: [
+    AdminGuardService,
     ApiService,
     AuthGuardService,
     JwtService,

@@ -107,17 +107,18 @@ export class AddMangaComponent implements OnInit {
 			let id = res;
 
 			this.mangaUpdatesService.getMangaInfoFromId(id).then(mangaInfo => {
+				let nullSafeMangaInfo = mangaInfo.toNullSafe()
 				this.mangaForm.setValue({
-					alternativeTitles: mangaInfo.alternativeTitles,
-					author: mangaInfo.author,
-					artist: mangaInfo.artist,
-					categories: mangaInfo.categories,
-					coverUrl: mangaInfo.imgUrl,
-					genres: mangaInfo.genres,
-					isCompleted: mangaInfo.scanlated,
-					synopsis: mangaInfo.synopsis,
-					title: mangaInfo.title,
-					type: mangaInfo.type,
+					alternativeTitles: nullSafeMangaInfo.alternativeTitles,
+					author: nullSafeMangaInfo.author,
+					artist: nullSafeMangaInfo.artist,
+					categories: nullSafeMangaInfo.categories,
+					coverUrl: nullSafeMangaInfo.coverUrl,
+					genres: nullSafeMangaInfo.genres,
+					isCompleted: nullSafeMangaInfo.isCompleted,
+					synopsis: nullSafeMangaInfo.synopsis,
+					title: nullSafeMangaInfo.title,
+					type: nullSafeMangaInfo.type,
 				});
 
 				this.muId = id;
@@ -148,7 +149,7 @@ export class AddMangaComponent implements OnInit {
 
 		if (this.isInAddMode()) {
 			this.mangaService.addManga(manga).then(res => {
-				//console.log(res);
+				console.log(res);
 				this.router.navigateByUrl("/manga/" + res.slug);
 			}).catch(err => {
 				//console.log(err);

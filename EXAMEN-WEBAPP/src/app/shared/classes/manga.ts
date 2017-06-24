@@ -29,4 +29,22 @@ export class Manga {
             "type": this.type
         }
     }
+
+    public toNullSafe(): Manga {
+        let manga = this;
+
+        manga.alternativeTitles = manga.alternativeTitles ? manga.alternativeTitles : [];
+        manga.artist = manga.artist ? manga.artist : "";
+        manga.author = manga.author ? manga.author : "";
+        manga.categories = manga.categories ? manga.categories : [];
+        manga.coverUrl = manga.coverUrl ? manga.coverUrl : "";
+        manga.genres = manga.genres ? manga.genres : [];
+        manga.isCompleted = manga.isCompleted ? manga.isCompleted : false;
+        manga.slug = manga.slug ? manga.slug : "";
+        manga.synopsis = manga.synopsis ? manga.synopsis : "";
+        manga.title = manga.title ? manga.title : "";
+        manga.type = manga.type ? manga.type : "";
+
+        return manga;
+    }
 }

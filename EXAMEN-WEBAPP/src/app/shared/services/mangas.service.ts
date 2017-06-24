@@ -29,7 +29,7 @@ export class MangaService {
         return this.apiService.post('/mangas', {
             "manga": manga.toJSON()
         }).toPromise().then(res => {
-            return this.responseToManga(res);
+            return this.responseToManga(res.manga);
         });
     }
 

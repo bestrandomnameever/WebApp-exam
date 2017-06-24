@@ -7,9 +7,11 @@ var secret = require('../config').secret;
 var UserSchema = new mongoose.Schema({
     username: { type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/^[a-zA-Z0-9]+$/, 'is invalid'], index: true },
     email: { type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
+    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Manga' }],
+    isAdmin: {type: Boolean, default: false},
     hash: String,
     salt: String,
-    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Manga' }]
+    
 }, { timestamps: true });
 
 UserSchema.plugin(uniqueValidator, { message: 'is already taken.' });
@@ -40,7 +42,8 @@ UserSchema.methods.toAuthJSON = function(){
   return {
     username: this.username,
     email: this.email,
-    token: this.generateJWT()
+    token: this.generateJWT(),
+    isAdmin: this.isAdmin
   };
 };
 

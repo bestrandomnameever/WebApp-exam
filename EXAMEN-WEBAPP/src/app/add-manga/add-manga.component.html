@@ -6,9 +6,10 @@
             <div class="cover-img"
                  [ngStyle]="{'background-image': 'url(' + mangaForm.controls['coverUrl'].value + ')'}">
                 <div class="cover-img__edit-menu">
-                    <button md-raised-button
-                            [color]="'accent'"
-                            (click)='openSelectCoverDialog()'>EDIT</button>
+                    <button [color]="'accent'"
+                            (click)='openSelectCoverDialog()'
+                            md-raised-button
+                            type="button">EDIT</button>
                 </div>
                 <input type="url"
                        name="coverUrl"
@@ -22,7 +23,7 @@
                        formControlName="title"
                        name="title"
                        placeholder="Title">
-                <md-error></md-error>
+                <md-error>Title is required</md-error>
             </md-input-container>
 
             <tag-input formControlName='alternativeTitles'

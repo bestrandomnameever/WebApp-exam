@@ -30,10 +30,12 @@ const addMangaRouting = RouterModule.forChild([
       {
         path: "add",
         component: AddMangaComponent,
+        data: {type: "add"}
       },
       {
         path: ":slug",
         component: AddMangaComponent,
+        data: { type: "edit"},
         resolve: {
           editableManga: MangaResolver
         }

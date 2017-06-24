@@ -21,6 +21,7 @@ import {
 export class AddMangaComponent implements OnInit {
 
 	muId: string = "";
+	slug: string;
 
 	authors: string[];
 	artists: string[] = [];
@@ -41,7 +42,7 @@ export class AddMangaComponent implements OnInit {
 		private router: Router
 	) {
 		this.mangaForm = fb.group({
-			'title': ['Test', Validators.required],
+			'title': ['', Validators.required],
 			'alternativeTitles': [''],
 			'author': [''],
 			'artist': [''],
@@ -63,21 +64,28 @@ export class AddMangaComponent implements OnInit {
 
 		this.route.data.subscribe(data => {
 			let editableManga = data.editableManga;
-			if (editableManga){
+			if (editableManga) {
 				this.mangaForm.setValue({
-				alternativeTitles: editableManga.alternativeTitles,
-				author: editableManga.author,
-				artist: editableManga.artist,
-				categories: editableManga.categories,
-				coverUrl: editableManga.coverUrl,
-				genres: editableManga.genres,
-				isCompleted: editableManga.isCompleted,
-				synopsis: editableManga.synopsis,
-				title: editableManga.title,
-				type: editableManga.type,
-			});
+					alternativeTitles: editableManga.alternativeTitles,
+					author: editableManga.author,
+					artist: editableManga.artist,
+					categories: editableManga.categories,
+					coverUrl: editableManga.coverUrl,
+					genres: editableManga.genres,
+					isCompleted: editableManga.isCompleted,
+					synopsis: editableManga.synopsis,
+					title: editableManga.title,
+					type: editableManga.type,
+				});
+				this.slug = data.editableManga.slug;
 			}
+
+			this.editType = data.type;
 		});
+	}
+
+	isInAddMode(): boolean {
+		return this.editType === "add";
 	}
 
 	transformLowerCasedCapitalized(item: string): string {
@@ -117,13 +125,39 @@ export class AddMangaComponent implements OnInit {
 		});
 	}
 
+	formValuesToManga(): Manga {
+		let manga = new Manga();
+		let formValues = this.mangaForm.value;
+
+		manga.alternativeTitles = formValues.alternativeTitles;
+		manga.artist = formValues.artist;
+		manga.author = formValues.author;
+		manga.categories = formValues.categories;
+		manga.coverUrl = formValues.coverUrl;
+		manga.genres = formValues.genres;
+		manga.isCompleted = formValues.isCompleted;
+		manga.synopsis = formValues.synopsis;
+		manga.title = formValues.title;
+		manga.type = formValues.type;
+
+		return manga;
+	}
+
 	submit() {
-		/*this.mangaService.addManga(this.manga).then(res => {
-			console.log(res);
-		}).catch(err => {
-			console.log(err);
-		});*/
-		console.log(this.mangaForm.value);
+		let manga = this.formValuesToManga();
+
+		if (this.isInAddMode()) {
+			this.mangaService.addManga(manga).then(res => {
+				console.log(res);
+			}).catch(err => {
+				console.log(err);
+			});
+		} else {
+			manga.slug = this.slug;
+			this.mangaService.editMangaWithSlug(manga).then(res => {
+				console.log(res);
+			})
+		}
 	}
 
 }

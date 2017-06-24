@@ -1,3 +1,4 @@
+import { DialogsService } from './../shared/dialogs/dialogs.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Manga } from './../shared/classes/manga';
@@ -12,6 +13,7 @@ export class MangaDetailComponent implements OnInit {
     manga: Manga = new Manga();
 
     constructor(
+        private dialogsService: DialogsService,
         private route: ActivatedRoute,
         private router: Router
     ) { }
@@ -22,5 +24,11 @@ export class MangaDetailComponent implements OnInit {
                 this.manga = data.manga;
             }
         )
+     }
+
+     deleteManga() {
+         this.dialogsService.openYesNoDialog('Delete manga', 'Are you really sure that you want to permanently delete this manga').then(result => {
+            console.log(result);
+         });
      }
 }

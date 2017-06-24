@@ -1,0 +1,9 @@
+@import '../../../sass/_globals';
+
+/deep/ md-dialog-actions {
+    justify-content: flex-end;
+}
+
+button .mat-button-wrapper {
+    color: $primary-text-color;
+}

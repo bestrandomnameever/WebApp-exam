@@ -1,0 +1,13 @@
+<div class="yes-no-dialog dialog">
+    <h2 md-dialog-title>{{dialogTitle}}</h2>
+    <md-dialog-content>{{dialogContent}}</md-dialog-content>
+    <md-dialog-actions class="dialog-button">
+        <button md-button
+                md-dialog-close
+                type="button">No</button>
+        <button md-button
+                md-button-raised
+                [md-dialog-close]="true"
+                type="button">Yes</button>
+    </md-dialog-actions>
+</div>

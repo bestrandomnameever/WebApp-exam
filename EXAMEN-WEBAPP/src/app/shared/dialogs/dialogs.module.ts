@@ -5,13 +5,16 @@ import { FormsModule } from '@angular/forms';
 
 import { CoverPickerDialog } from './cover-picker.component';
 import { ImportFromMangaUpdatesComponent } from './import-from-mu.component';
+import { YesNoDialogComponent } from './yes-no.component';
+
 import { DialogsService } from './dialogs.service';
 
 
 @NgModule({
     declarations: [
         CoverPickerDialog,
-        ImportFromMangaUpdatesComponent
+        ImportFromMangaUpdatesComponent,
+        YesNoDialogComponent
     ],
     imports: [
         CommonModule,
@@ -20,14 +23,16 @@ import { DialogsService } from './dialogs.service';
     ],
     exports: [
         CoverPickerDialog,
-        ImportFromMangaUpdatesComponent
+        ImportFromMangaUpdatesComponent,
+        YesNoDialogComponent
     ],
     providers: [
         DialogsService,
     ],
     entryComponents: [
         CoverPickerDialog,
-        ImportFromMangaUpdatesComponent
+        ImportFromMangaUpdatesComponent,
+        YesNoDialogComponent
     ]
 })
 export class DialogsModule { }

@@ -11,6 +11,18 @@ function getTokenFromHeader(req){
 }
 
 var auth = {
+  admin: jwt({
+    secret: secret,
+    userProperty: 'payload',
+    getToken: getTokenFromHeader,
+    function (req, res) {
+      if (!req.user.isAdmin) return res.status(401).json({
+        errors: {
+          general: "Admin privileges required"
+        }
+      })
+    }
+  }),
   required: jwt({
     secret: secret,
     userProperty: 'payload',

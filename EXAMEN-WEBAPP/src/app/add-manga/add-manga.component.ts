@@ -156,6 +156,8 @@ export class AddMangaComponent implements OnInit {
 			manga.slug = this.slug;
 			this.mangaService.editMangaWithSlug(manga).then(res => {
 				console.log(res);
+			}).catch(err => {
+				console.log(err);
 			})
 		}
 	}

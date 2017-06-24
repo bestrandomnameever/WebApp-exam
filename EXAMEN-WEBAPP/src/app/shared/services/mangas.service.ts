@@ -46,6 +46,8 @@ export class MangaService {
     }
 
     editMangaWithSlug(manga: Manga): Promise<any> {
-        return this.apiService.put('/mangas/' + manga.slug).toPromise();
+        return this.apiService.put('/mangas/' + manga.slug, {
+            "manga": manga.toJSON()
+        }).toPromise();
     }
 }

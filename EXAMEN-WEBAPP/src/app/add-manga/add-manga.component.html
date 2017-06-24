@@ -1,24 +1,31 @@
-<form class="add-manga-form">
+<form class="add-manga-form"
+      [formGroup]="mangaForm"
+      (ngSubmit)="submit()">
     <div class="cover-with-detail-container">
         <div class="cover-with-detail-container__cover">
             <div class="cover-img"
-                 [ngStyle]="{'background-image': 'url(' + manga.coverUrl + ')'}">
+                 [ngStyle]="{'background-image': 'url(' + mangaForm.controls['coverUrl'].value + ')'}">
                 <div class="cover-img__edit-menu">
                     <button md-raised-button
                             [color]="'accent'"
                             (click)='openSelectCoverDialog()'>EDIT</button>
                 </div>
+                <input type="url"
+                       name="coverUrl"
+                       hidden
+                       formControlName='coverUrl'>
             </div>
         </div>
         <div class="cover-with-detail-container__detail">
             <md-input-container>
                 <input mdInput
-                       [(ngModel)]="manga.title"
+                       formControlName="title"
                        name="title"
                        placeholder="Title">
+                <md-error></md-error>
             </md-input-container>
 
-            <tag-input [(ngModel)]='manga.alternativeTitles'
+            <tag-input formControlName='alternativeTitles'
                        name="alternative titles"
                        theme='weeb-theme'
                        [modelAsStrings]='true'
@@ -28,7 +35,7 @@
 
             <md-input-container>
                 <input mdInput
-                       [(ngModel)]="manga.author"
+                       formControlName="author"
                        name="author"
                        [mdAutocomplete]="authorAuto"
                        placeholder="Author">
@@ -43,7 +50,7 @@
 
             <md-input-container>
                 <input mdInput
-                       [(ngModel)]="manga.artist"
+                       formControlName="artist"
                        name="artist"
                        [mdAutocomplete]="artistAuto"
                        placeholder="Artist">
@@ -56,29 +63,28 @@
                 </md-option>
             </md-autocomplete>
 
-            <md-select [(ngModel)]="manga.type"
+            <md-select formControlName="type"
                        name="type"
                        placeholder="Type">
                 <md-option *ngFor="let type of types"
                            [value]="type">{{type}}</md-option>
             </md-select>
 
-            <md-checkbox name="scanlated"
-                         [checked]="manga.isCompleted"
-                         (change)="manga.isCompleted = $event.checked">
+            <md-checkbox name="isCompleted"
+                         formControlName="isCompleted">
                 Completely Scanlated?
             </md-checkbox>
 
             <md-input-container>
                 <textarea mdInput
-                          [(ngModel)]="manga.synopsis"
+                          formControlName="synopsis"
                           name="synopsis"
                           placeholder="Synopsys"></textarea>
             </md-input-container>
         </div>
     </div>
     <div>
-        <tag-input [(ngModel)]='manga.genres'
+        <tag-input formControlName='genres'
                    name="genres"
                    theme='weeb-theme'
                    [onlyFromAutocomplete]="true"
@@ -90,7 +96,7 @@
             </tag-input-dropdown>
         </tag-input>
 
-        <tag-input [(ngModel)]='manga.categories'
+        <tag-input formControlName='categories'
                    name="categories"
                    theme='weeb-theme'
                    [modelAsStrings]='true'
@@ -110,6 +116,7 @@
                 (click)="openImportFromMuDialog()">IMPORT</button>
     </div>
     <button class="submit-btn"
+            [disabled]="!mangaForm.valid"
             md-raised-button
             [color]="'accent'"
             (click)="submit()">Submit</button>

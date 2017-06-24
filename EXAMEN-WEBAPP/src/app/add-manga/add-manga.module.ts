@@ -2,7 +2,7 @@ import { AuthGuardService } from './../shared/services/auth-guard.service';
 import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdAutocompleteModule,
@@ -19,16 +19,26 @@ import { MangaResolver } from './../manga-detail/manga-resolver.service';
 
 const addMangaRouting = RouterModule.forChild([
   {
-    path: "add",
-    component: AddMangaComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: "edit/:slug",
-    component: AddMangaComponent,
-    resolve: {
-      editableManga: MangaResolver
-    }
+    path: "edit",
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: "",
+        redirectTo: "add",
+        pathMatch: "full"
+      },
+      {
+        path: "add",
+        component: AddMangaComponent,
+      },
+      {
+        path: ":slug",
+        component: AddMangaComponent,
+        resolve: {
+          editableManga: MangaResolver
+        }
+      }
+    ]
   }
 ]);
 
@@ -44,6 +54,7 @@ const addMangaRouting = RouterModule.forChild([
     MdCheckboxModule,
     MdInputModule,
     MdSelectModule,
+    ReactiveFormsModule,
     TagInputModule
   ],
   declarations: [
@@ -53,4 +64,4 @@ const addMangaRouting = RouterModule.forChild([
     MangaResolver
   ]
 })
-export class AddMangaModule {}
+export class AddMangaModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -22,23 +22,37 @@ export class AddMangaComponent implements OnInit {
 
 	muId: string = "";
 
-	editableManga;
-	manga = new Manga();
-
 	authors: string[];
 	artists: string[] = [];
 	categories: string[];
 	genres: string[];
 	types: string[] = [];
-	
+
+	mangaForm: FormGroup;
+	editType: String;
+
 	constructor(
 		private dialogsService: DialogsService,
+		private fb: FormBuilder,
 		private mangaUpdatesService: MangaUpdatesService,
 		private mangaService: MangaService,
 		private metadataService: MetadataService,
 		private route: ActivatedRoute,
-        private router: Router
-	) { }
+		private router: Router
+	) {
+		this.mangaForm = fb.group({
+			'title': ['Test', Validators.required],
+			'alternativeTitles': [''],
+			'author': [''],
+			'artist': [''],
+			'coverUrl': [''],
+			'type': [''],
+			'isCompleted': [''],
+			'synopsis': [''],
+			'genres': [''],
+			'categories': ['']
+		});
+	}
 
 	ngOnInit() {
 		this.metadataService.getAllAuthors().then(authors => this.authors = authors);
@@ -48,9 +62,22 @@ export class AddMangaComponent implements OnInit {
 		this.metadataService.getAllCategories().then(categories => this.categories = categories);
 
 		this.route.data.subscribe(data => {
-			this.editableManga = data.editableManga;
-			console.log(this.editableManga);
-		})
+			let editableManga = data.editableManga;
+			if (editableManga){
+				this.mangaForm.setValue({
+				alternativeTitles: editableManga.alternativeTitles,
+				author: editableManga.author,
+				artist: editableManga.artist,
+				categories: editableManga.categories,
+				coverUrl: editableManga.coverUrl,
+				genres: editableManga.genres,
+				isCompleted: editableManga.isCompleted,
+				synopsis: editableManga.synopsis,
+				title: editableManga.title,
+				type: editableManga.type,
+			});
+			}
+		});
 	}
 
 	transformLowerCasedCapitalized(item: string): string {
@@ -58,46 +85,45 @@ export class AddMangaComponent implements OnInit {
 	}
 
 	openSelectCoverDialog() {
-		this.dialogsService.openCoverPickerDialog(this.muId, this.manga.title).then(res => {
+		this.dialogsService.openCoverPickerDialog(this.muId, this.mangaForm.controls['title'].value).then(res => {
 			if (res) {
-				this.manga.coverUrl = res;
+				this.mangaForm.patchValue({
+					coverUrl: res
+				});
 			}
 		})
 	}
 
 	openImportFromMuDialog() {
 		this.dialogsService.openImportFromMangaUpdatesDialog().then(res => {
-			console.log(res);
-			
 			let id = res;
 
 			this.mangaUpdatesService.getMangaInfoFromId(id).then(mangaInfo => {
-				this.manga.title = mangaInfo.title;
-				this.manga.alternativeTitles = mangaInfo.associatedNames;
-				this.manga.coverUrl = mangaInfo.imgUrl;
-				this.manga.synopsis = mangaInfo.synopsis;
-				this.manga.author = mangaInfo.author;
-				this.manga.artist = mangaInfo.artist;
-				this.manga.genres = mangaInfo.genres;
-				this.manga.categories = mangaInfo.categories;
-				this.manga.isCompleted = mangaInfo.scanlated;
-				this.manga.type = mangaInfo.type;
+				this.mangaForm.setValue({
+					alternativeTitles: mangaInfo.alternativeTitles,
+					author: mangaInfo.author,
+					artist: mangaInfo.artist,
+					categories: mangaInfo.categories,
+					coverUrl: mangaInfo.imgUrl,
+					genres: mangaInfo.genres,
+					isCompleted: mangaInfo.scanlated,
+					synopsis: mangaInfo.synopsis,
+					title: mangaInfo.title,
+					type: mangaInfo.type,
+				});
 
 				this.muId = id;
 			});
 		});
 	}
 
-	test (event) {
-		console.log(event);
-	}
-
 	submit() {
-		this.mangaService.addManga(this.manga).then(res => {
+		/*this.mangaService.addManga(this.manga).then(res => {
 			console.log(res);
 		}).catch(err => {
 			console.log(err);
-		});
+		});*/
+		console.log(this.mangaForm.value);
 	}
 
 }

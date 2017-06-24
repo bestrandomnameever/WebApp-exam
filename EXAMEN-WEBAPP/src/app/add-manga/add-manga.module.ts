@@ -15,13 +15,23 @@ import { TagInputModule } from 'ng2-tag-input';
 
 import { AddMangaComponent } from './add-manga.component';
 
+import { MangaResolver } from './../manga-detail/manga-resolver.service';
+
 const addMangaRouting = RouterModule.forChild([
   {
     path: "add",
     component: AddMangaComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: "edit/:slug",
+    component: AddMangaComponent,
+    resolve: {
+      editableManga: MangaResolver
+    }
   }
 ]);
+
 
 @NgModule({
   imports: [
@@ -40,7 +50,7 @@ const addMangaRouting = RouterModule.forChild([
     AddMangaComponent
   ],
   providers: [
-
+    MangaResolver
   ]
 })
 export class AddMangaModule {}

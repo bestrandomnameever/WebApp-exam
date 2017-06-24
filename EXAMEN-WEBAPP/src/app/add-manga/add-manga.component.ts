@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from "@angular/forms";
 
+import { ActivatedRoute, Router } from '@angular/router';
+
 import {
 	Manga,
 	DialogsService,
@@ -8,9 +10,6 @@ import {
 	MangaService,
 	MetadataService
 } from 'app/shared';
-
-/*import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";*/
 
 @Component({
 	selector: 'app-addmanga',
@@ -23,20 +22,8 @@ export class AddMangaComponent implements OnInit {
 
 	muId: string = "";
 
+	editableManga;
 	manga = new Manga();
-
-	/*manga = {
-		alternativeTitles: [],
-		author: "",
-		artist: "",
-		categories: [],
-		coverUrl: "",
-		genres: [],
-		isCompleted: false,
-		synopsis: "",
-		title: "",
-		type: ""
-	}*/
 
 	authors: string[];
 	artists: string[] = [];
@@ -49,6 +36,8 @@ export class AddMangaComponent implements OnInit {
 		private mangaUpdatesService: MangaUpdatesService,
 		private mangaService: MangaService,
 		private metadataService: MetadataService,
+		private route: ActivatedRoute,
+        private router: Router
 	) { }
 
 	ngOnInit() {
@@ -57,6 +46,11 @@ export class AddMangaComponent implements OnInit {
 		this.metadataService.getAllTypes().then(types => this.types = types);
 		this.metadataService.getAllGenres().then(genres => this.genres = genres);
 		this.metadataService.getAllCategories().then(categories => this.categories = categories);
+
+		this.route.data.subscribe(data => {
+			this.editableManga = data.editableManga;
+			console.log(this.editableManga);
+		})
 	}
 
 	transformLowerCasedCapitalized(item: string): string {

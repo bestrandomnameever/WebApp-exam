@@ -148,16 +148,18 @@ export class AddMangaComponent implements OnInit {
 
 		if (this.isInAddMode()) {
 			this.mangaService.addManga(manga).then(res => {
-				console.log(res);
+				//console.log(res);
+				this.router.navigateByUrl("/manga/" + res.slug);
 			}).catch(err => {
-				console.log(err);
+				//console.log(err);
 			});
 		} else {
 			manga.slug = this.slug;
 			this.mangaService.editMangaWithSlug(manga).then(res => {
-				console.log(res);
+				//console.log(res);
+				this.router.navigateByUrl("/manga/" + res.slug);
 			}).catch(err => {
-				console.log(err);
+				//console.log(err);
 			})
 		}
 	}

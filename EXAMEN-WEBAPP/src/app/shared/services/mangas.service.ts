@@ -9,24 +9,11 @@ import { Manga } from '../';
 export class MangaService {
     constructor(
         private apiService: ApiService
-    ) {}
+    ) { }
 
     getMangaWithSlug(slug: string): Promise<Manga> {
         return this.apiService.get('/mangas/' + slug).toPromise().then(res => {
-            var manga = new Manga();
-            manga.slug = res.slug;
-            
-            manga.alternativeTitles = res.alternativeTitles;
-            manga.artist = res.artist;
-            manga.author = res.author;
-            manga.categories = res.categories;
-            manga.coverUrl = res.coverUrl;
-            manga.genres = res.genres;
-            manga.isCompleted = res.isCompleted;
-            manga.synopsis = res.synopsis;
-            manga.title = res.title;
-            manga.type = res.type;
-            return manga;
+            return this.responseToManga(res.manga);
         });
     }
 
@@ -38,16 +25,38 @@ export class MangaService {
         return this.apiService.get('/mangas/search/' + searchTerm).toPromise();
     }
 
-    addManga(manga: Manga): Promise<Object> {
-        //console.log(manga.toJSON());
-         return this.apiService.post('/mangas', {
-             "manga": manga.toJSON()
-         }).toPromise();
+    addManga(manga: Manga): Promise<Manga> {
+        return this.apiService.post('/mangas', {
+            "manga": manga.toJSON()
+        }).toPromise().then(res => {
+            return this.responseToManga(res);
+        });
     }
 
-    editMangaWithSlug(manga: Manga): Promise<any> {
+    editMangaWithSlug(manga: Manga): Promise<Manga> {
         return this.apiService.put('/mangas/' + manga.slug, {
             "manga": manga.toJSON()
-        }).toPromise();
+        }).toPromise()
+        .then( res => {
+            return this.responseToManga(res.manga);
+        });
+    }
+
+    private responseToManga(responseManga): Manga {
+        let manga = new Manga();
+
+        manga.alternativeTitles = responseManga.alternativeTitles;
+        manga.artist = responseManga.artist;
+        manga.author = responseManga.author;
+        manga.categories = responseManga.categories;
+        manga.coverUrl = responseManga.coverUrl;
+        manga.genres = responseManga.genres;
+        manga.isCompleted = responseManga.isCompleted;
+        manga.slug = responseManga.slug;
+        manga.synopsis = responseManga.synopsis;
+        manga.title = responseManga.title;
+        manga.type = responseManga.type;
+
+        return manga;
     }
 }

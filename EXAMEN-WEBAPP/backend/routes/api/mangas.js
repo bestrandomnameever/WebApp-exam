@@ -41,7 +41,9 @@ router.get('/', function (req, res, next) {
 
 //Get manga with slug
 router.get('/:manga', function (req, res, next) {
-    return res.json(req.manga.toJSON());
+    return res.json({
+        manga: req.manga.toJSON()
+    });
 });
 
 //Search for manga which term contain in name

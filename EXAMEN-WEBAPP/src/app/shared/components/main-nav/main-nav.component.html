@@ -19,8 +19,9 @@
        routerLinkActive="active">
       <li>Home</li>
     </a>
-    <a routerLink="add"
-       routerLinkActive="active">
+    <a routerLink="edit/add"
+       routerLinkActive="active"
+       *showToAdmin>
       <li>Add a manga</li>
     </a>
     <a routerLink="auth"

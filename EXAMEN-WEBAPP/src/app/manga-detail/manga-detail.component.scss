@@ -35,6 +35,30 @@
         }
     }
 
+    .admin-actions {
+        display: flex;
+        margin: 1rem;
+        padding: 1rem;
+
+        justify-content: flex-end;
+        align-items: center;
+
+        background-color: $darker-background;
+
+        a {
+            margin: 0 1rem;
+            i {
+                font-size: $font-size-xlarge;
+                color: $primary-text-color;
+                transition: color 100ms;
+
+                &:hover {
+                    color: $accent-color;
+                }
+            }
+        }
+    }
+
     .img-info-cols {
         display: flex;
         flex-direction: column;

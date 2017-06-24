@@ -7,4 +7,15 @@ const router = express.Router();
 });*/
 router.use('/api', require('./api'));
 
+//Error handler for missing or invalid JWT token
+router.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).json({
+      errors: {
+        general: "JWT Token missing or incorrect"
+      }
+    });
+  }
+});
+
 module.exports = router;

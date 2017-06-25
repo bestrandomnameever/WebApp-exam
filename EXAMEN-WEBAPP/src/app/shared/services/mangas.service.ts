@@ -54,6 +54,18 @@ export class MangaService {
         });
     }
 
+    favoriteMangaWithSlug(slug: string): Promise<any> {
+        return this.apiService.put('/mangas/' + slug + "/favorite").toPromise().then(res => {
+
+        });
+    }
+
+    unfavoriteMangaWithSlug(slug: string): Promise<any> {
+        return this.apiService.put('/mangas/' + slug + "/unfavorite").toPromise().then(res => {
+            
+        });
+    }
+
     private responseToManga(responseManga): Manga {
         let manga = new Manga();
 

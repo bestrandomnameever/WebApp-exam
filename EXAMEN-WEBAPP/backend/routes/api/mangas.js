@@ -125,10 +125,11 @@ router.put('/:manga', auth.required, auth.isAdmin, function (req, res, next) {
 });
 
 router.delete('/:manga', auth.required, auth.isAdmin, function (req, res, next) {
-    req.manga.remove().then(message => {
+    req.manga.remove().then(deletedManga => {
         res.json({
-            succes: "Manga with slug " + req.manga.slug + " deleted"
-        })
+            succes: "Manga with slug " + req.manga.slug + " deleted",
+            manga: deletedManga.toJSON()
+        });
     });
 });
 

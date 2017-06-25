@@ -48,7 +48,8 @@
         <a [routerLink]="['/edit', manga.slug]">
              <i class="ion-edit"></i>
          </a>
-        <a href="">
+        <a (click)="deleteManga()"
+           href="javascript:void(null)">
             <i class="ion-trash-b"></i>
         </a>
     </div>

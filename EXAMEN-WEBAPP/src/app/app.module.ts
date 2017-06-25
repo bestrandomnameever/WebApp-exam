@@ -4,11 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { AuthModule } from './auth/auth.module';
-import { AddMangaModule } from './add-manga/add-manga.module';
-import { HomeModule } from './home/home.module';
-import { MangaDetailModule } from './manga-detail/manga-detail.module';
-
 import { AppComponent } from './app.component';
 import { MainNavComponent } from './shared/components/main-nav/main-nav.component';
 
@@ -24,8 +19,14 @@ import { NoAuthGuardService } from './shared/services/no-auth-guard.service';
 import { SearchService } from './shared/services/search.service';
 import { UserService } from './shared/services/user.service';
 
+import { AuthModule } from './auth/auth.module';
+import { AddMangaModule } from './add-manga/add-manga.module';
 import { DialogsModule } from './shared/dialogs/dialogs.module';
+import { HomeModule } from './home/home.module';
+import { MangaDetailModule } from './manga-detail/manga-detail.module';
 import { SharedModule } from './shared/shared.module';
+import { SnackbarsModule } from './shared/snackbars/snackbars.module';
+
 
 
 
@@ -48,6 +49,7 @@ const rootRouting = RouterModule.forRoot([], { useHash: true });
     HttpModule,
     RouterModule,
     SharedModule,
+    SnackbarsModule,
     rootRouting
   ],
   providers: [

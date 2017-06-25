@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { MdSnackBarModule } from '@angular/material';
 
 import { MangaDetailComponent } from './manga-detail.component';
 
@@ -29,8 +30,9 @@ const homeRouting = RouterModule.forChild([
   imports: [
     CommonModule,
     homeRouting,
+    MdSnackBarModule,
     PerfectScrollbarModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     MangaResolver

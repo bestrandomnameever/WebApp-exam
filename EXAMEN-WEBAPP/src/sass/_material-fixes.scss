@@ -3,9 +3,12 @@
 [md-button],
 [md-raised-button] {
     span {
-        color: $light-text-color;
         font-weight: 700;
         text-transform: uppercase;
+    }
+
+    &[ng-reflect-color] span {
+        color: $light-text-color;
     }
 }
 

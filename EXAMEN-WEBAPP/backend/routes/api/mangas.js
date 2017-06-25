@@ -52,7 +52,7 @@ router.get('/search/:searchterm', function (req, res, next) {
 })
 
 //Add a manga
-router.post('/', function (req, res, next) {
+router.post('/', auth.required, auth.isAdmin, function (req, res, next) {
     var manga = new Manga();
 
     manga.alternativeTitles = req.body.manga.alternativeTitles
@@ -74,45 +74,45 @@ router.post('/', function (req, res, next) {
 });
 
 //Edit manga
-router.put('/:manga', auth.required, function (req, res, next) {
+router.put('/:manga', auth.required, auth.isAdmin, function (req, res, next) {
     User.findById(req.payload.id).then(function (user) {
-        if(typeof req.body.manga.alternativeTitles !== 'undefined') {
+        if (typeof req.body.manga.alternativeTitles !== 'undefined') {
             req.manga.alternativeTitles = req.body.manga.alternativeTitles;
         }
 
-        if(typeof req.body.manga.artist !== 'undefined') {
+        if (typeof req.body.manga.artist !== 'undefined') {
             req.manga.artist = req.body.manga.artist;
         }
 
-        if(typeof req.body.manga.author !== 'undefined') {
+        if (typeof req.body.manga.author !== 'undefined') {
             req.manga.author = req.body.manga.author;
         }
 
-        if(typeof req.body.manga.categories !== 'undefined') {
+        if (typeof req.body.manga.categories !== 'undefined') {
             req.manga.categories = req.body.manga.categories;
         }
 
-        if(typeof req.body.manga.coverUrl !== 'undefined') {
+        if (typeof req.body.manga.coverUrl !== 'undefined') {
             req.manga.coverUrl = req.body.manga.coverUrl;
         }
 
-        if(typeof req.body.manga.genres !== 'undefined') {
+        if (typeof req.body.manga.genres !== 'undefined') {
             req.manga.genres = req.body.manga.genres;
         }
 
-        if(typeof req.body.manga.isCompleted !== 'undefined') {
+        if (typeof req.body.manga.isCompleted !== 'undefined') {
             req.manga.isCompleted = req.body.manga.isCompleted;
         }
 
-        if(typeof req.body.manga.synopsis !== 'undefined') {
+        if (typeof req.body.manga.synopsis !== 'undefined') {
             req.manga.synopsis = req.body.manga.synopsis;
         }
 
-        if(typeof req.body.manga.title !== 'undefined') {
+        if (typeof req.body.manga.title !== 'undefined') {
             req.manga.title = req.body.manga.title;
         }
 
-        if(typeof req.body.manga.type !== 'undefined') {
+        if (typeof req.body.manga.type !== 'undefined') {
             req.manga.type = req.body.manga.type;
         }
 
@@ -121,6 +121,14 @@ router.put('/:manga', auth.required, function (req, res, next) {
                 manga: manga.toJSON()
             });
         }).catch(next);
+    });
+});
+
+router.delete('/:manga', auth.required, auth.isAdmin, function (req, res, next) {
+    req.manga.remove().then(message => {
+        res.json({
+            succes: "Manga with slug " + req.manga.slug + " deleted"
+        })
     });
 });
 

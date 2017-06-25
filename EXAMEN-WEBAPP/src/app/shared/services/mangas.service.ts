@@ -42,6 +42,10 @@ export class MangaService {
         });
     }
 
+    deleteMangaWithSlug(slug: string): Promise<any> {
+        return this.apiService.delete('/mangas/' + slug).toPromise();
+    }
+
     private responseToManga(responseManga): Manga {
         let manga = new Manga();
 

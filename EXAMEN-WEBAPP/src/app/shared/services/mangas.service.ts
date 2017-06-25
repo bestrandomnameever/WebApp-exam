@@ -48,6 +48,12 @@ export class MangaService {
         });
     }
 
+    isMangaWithSlugFavorited(slug: string): Promise<Boolean> {
+        return this.apiService.get('/mangas/' + slug + "/isfavorite").toPromise().then(res => {
+            return res.isFavorited;
+        });
+    }
+
     private responseToManga(responseManga): Manga {
         let manga = new Manga();
 

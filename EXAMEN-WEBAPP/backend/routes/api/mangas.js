@@ -133,4 +133,18 @@ router.delete('/:manga', auth.required, auth.isAdmin, function (req, res, next) 
     });
 });
 
+//Favorites
+
+router.get('/:manga/isfavorited', auth.required, function (req, res, next) {
+    User.findById(req.payload.id).then(function (user) {
+        var isFavorited = false;
+        if (user.favorites.indexOf(req.manga._id) > -1) {
+            isFavorited = true;
+        }
+        return res.json({
+            isFavorited: isFavorited
+        });
+    });
+});
+
 module.exports = router;

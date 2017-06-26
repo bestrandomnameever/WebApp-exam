@@ -43,6 +43,9 @@
                *ngFor="let category of manga.categories">{{category}}</a>
         </div>
     </div>
+    <div>
+        <favorite-btn mangaSlug="{{manga.slug}}"></favorite-btn>
+    </div>
     <div class="admin-actions"
          *showToAdmin>
         <a [routerLink]="['/edit', manga.slug]">

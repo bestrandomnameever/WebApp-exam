@@ -7,7 +7,9 @@ import { MangaCoverComponent } from './manga-cover/manga-cover.component';
 import { MangaCoverGridComponent } from './manga-cover-grid/manga-cover-grid.component';
 
 import { MangaService } from 'app/shared';
+
 import { MdProgressSpinnerModule } from '@angular/material';
+import { SharedModule } from './../shared/shared.module';
 
 const homeRouting = RouterModule.forChild([
   {
@@ -31,7 +33,8 @@ const homeRouting = RouterModule.forChild([
         CommonModule,
         MdProgressSpinnerModule,
         PerfectScrollbarModule,
-        RouterModule
+        RouterModule,
+        SharedModule
     ],
     providers: [
         MangaService

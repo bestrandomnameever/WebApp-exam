@@ -6,11 +6,11 @@ import { UserService } from './../../services/user.service';
 
 import { Manga } from './../../classes/manga';
 @Component({
-    selector: 'selector',
+    selector: 'favorite-btn',
     templateUrl: './favorite-btn.component.html',
     styleUrls: ['./favorite-btn.component.scss']
 })
-export class FavoriteButtonComponent {
+export class FavoriteButtonComponent implements OnInit {
     constructor(
         private mangaService: MangaService,
         private router: Router,
@@ -18,22 +18,47 @@ export class FavoriteButtonComponent {
     ) { }
 
     @Input()
-    manga: Manga;
+    mangaSlug: string;
     @Output()
     onToggle = new EventEmitter<boolean>();
     isSubmitting = false;
+    favorited: boolean = false;
+
+    ngOnInit(): void {
+        this.userService.isAuthenticated.subscribe(auth => {
+            if (auth) {
+                this.mangaService.isMangaWithSlugFavorited(this.mangaSlug)
+                    .then(isFavorited => {
+                        this.favorited = isFavorited
+                    })
+                    .catch(err => {
+                        console.log("Problem with auth");
+                    })
+            }
+        })
+    }
 
     toggleFavorite() {
         this.isSubmitting = true;
 
-        this.userService.isAuthenticated.subscribe((auth) => {
-            if (!auth) {
-                this.router.navigateByUrl('/auth');
-            }
-
-            this.mangaService.isMangaWithSlugFavorited(this.manga.slug).then(isFavorited => {
-                console.log(isFavorited);
-            });
-        })
+        if (this.favorited) {
+            this.mangaService.unfavoriteMangaWithSlug(this.mangaSlug)
+                .then(result => {
+                    this.favorited = false;
+                    this.isSubmitting = false;
+                }).catch(err => {
+                    this.isSubmitting = false;
+                    console.log(err);
+                })
+        } else {
+            this.mangaService.favoriteMangaWithSlug(this.mangaSlug)
+                .then(result => {
+                    this.favorited = true;
+                    this.isSubmitting = false;
+                }).catch(err => {
+                    this.isSubmitting = false;
+                    console.log(err);
+                })
+        }
     }
 }

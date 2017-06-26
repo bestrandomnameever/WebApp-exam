@@ -12,6 +12,26 @@ $hoverTransitionTiming: 200ms;
         height: 0;
         padding-top: 140%;
 
+        flex-direction: column;
+
+        .mangaCover_content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mangaCover__actions {
+            display: none;
+            margin: 0.5rem 0.5rem 0;
+            text-align: right;
+
+            z-index: 5;
+        }
+
         .mangaCover__img {
             position: absolute;
             width: 100%;
@@ -24,19 +44,14 @@ $hoverTransitionTiming: 200ms;
         }
 
         .mangaCover__synopsis {
-            position: absolute;
-            top: 0.8rem;
-            left: 0.5rem;
-            right: 0.5rem;
-
-            height: auto;
-            max-height: 70%;
-            margin: 0;
+            margin: 0.8rem 0.5rem;
             padding: 0.3rem;
 
             border-radius: 3px;
-
             overflow: hidden;
+
+            flex-shrink: 1;
+            flex-grow: 1;
 
             background: rgba(#595959, 0.7);
             background-repeat: no-repeat;
@@ -44,18 +59,19 @@ $hoverTransitionTiming: 200ms;
             background-position: center;
 
             color: white;
-            opacity: 0; 
+            opacity: 0;
 
             transition: opacity #{$hoverTransitionTiming};
         }
 
         .mangaCover__title {
-            position: absolute;
             display: block;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            box-sizing: border-box;
+            width: 100%;
             padding: 1rem 0.5rem 0.5rem;
+
+            align-self: flex-end;
+
             background-image: linear-gradient(180deg, transparent, rgba(black, 0.7));
             color: white;
             font-weight: 700;
@@ -70,8 +86,7 @@ $hoverTransitionTiming: 200ms;
             right: 0;
             bottom: 0;
             opacity: 0;
-            background: linear-gradient(45deg, rgba(#DB9B4F, 0.5), rgba(#fc9920, 0.9))/*, rgba(grey, 0.7)*/
-            ;
+            background: linear-gradient(45deg, rgba(#DB9B4F, 0.5), rgba(#fc9920, 0.9));
             transition: opacity #{$hoverTransitionTiming};
         }
 
@@ -80,8 +95,13 @@ $hoverTransitionTiming: 200ms;
                 opacity: 1;
             }
 
-            .mangaCover__synopsis {
-              opacity: 1;
+            .mangaCover {
+                &__actions {
+                    display: block;
+                }
+                &__synopsis {
+                    opacity: 1;
+                }
             }
         }
     }

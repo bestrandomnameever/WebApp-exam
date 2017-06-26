@@ -44,11 +44,14 @@
         </div>
     </div>
     <div class="admin-actions"
-         *showToAdmin>
-        <a [routerLink]="['/edit', manga.slug]">
+         *showToLoggedIn="true">
+        <favorite-btn mangaSlug="{{manga.slug}}"></favorite-btn>
+        <a *showToAdmin
+           [routerLink]="['/edit', manga.slug]">
              <i class="ion-edit"></i>
          </a>
         <a (click)="deleteManga()"
+           *showToAdmin
            href="javascript:void(null)">
             <i class="ion-trash-b"></i>
         </a>

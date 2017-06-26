@@ -127,8 +127,43 @@ router.put('/:manga', auth.required, auth.isAdmin, function (req, res, next) {
 router.delete('/:manga', auth.required, auth.isAdmin, function (req, res, next) {
     req.manga.remove().then(deletedManga => {
         res.json({
-            succes: "Manga with slug " + req.manga.slug + " deleted",
+            success: "Manga with slug " + req.manga.slug + " deleted",
             manga: deletedManga.toJSON()
+        });
+    });
+});
+
+//Favorites
+
+router.get('/:manga/isfavorited', auth.required, function (req, res, next) {
+    var mangaId = req.manga._id;
+    User.findById(req.payload.id).then(function (user) {
+        return res.json({
+            isFavorite: user.isFavorite(mangaId)
+        });
+    });
+});
+
+router.put('/:manga/favorite', auth.required, function (req, res, next) {
+    var mangaId = req.manga._id;
+
+    User.findById(req.payload.id).then(function (user) {
+        return user.favorite(mangaId).then(function () {
+            return res.json({
+                success: "Manga with slug " + req.manga.slug + " favorited"
+            });
+        });
+    });
+});
+
+router.put('/:manga/unfavorite', auth.required, function (req, res, next) {
+    var mangaId = req.manga._id;
+
+    User.findById(req.payload.id).then(function (user) {
+        return user.unfavorite(mangaId).then(function () {
+            return res.json({
+                success: "Manga with slug " + req.manga.slug + " unfavorited"
+            });
         });
     });
 });

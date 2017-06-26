@@ -4,12 +4,14 @@
     <img src={{mangaCoverUrl}}
          alt=""
          class="mangaCover__img">
-    <!--<p class="mangaCover__synopsis">
-      {{mangaSynopsis}}
-    </p>-->
-    <perfect-scrollbar class="mangaCover__synopsis">
-      {{mangaSynopsis}}
-    </perfect-scrollbar>
-    <span class="mangaCover__title">{{mangaName}}</span>
+    <div class="mangaCover_content">
+      <div class="mangaCover__actions">
+        <favorite-btn class="mangaCover__actions__favorite" mangaSlug="{{mangaSlug}}"></favorite-btn>
+      </div>
+      <perfect-scrollbar class="mangaCover__synopsis">
+        {{mangaSynopsis}}
+      </perfect-scrollbar>
+      <span class="mangaCover__title">{{mangaName}}</span>
+    </div>
   </div>
 </div>

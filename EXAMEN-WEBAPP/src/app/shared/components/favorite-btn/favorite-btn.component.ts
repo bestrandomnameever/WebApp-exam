@@ -38,7 +38,10 @@ export class FavoriteButtonComponent implements OnInit {
         })
     }
 
-    toggleFavorite() {
+    toggleFavorite(event) {
+        if(event) {
+            event.stopPropagation();
+        }
         this.isSubmitting = true;
 
         if (this.favorited) {

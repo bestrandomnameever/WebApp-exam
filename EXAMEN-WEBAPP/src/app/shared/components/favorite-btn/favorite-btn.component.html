@@ -1,5 +1,5 @@
 <div class="favorite-btn"
-     (click)="toggleFavorite()"
+     (click)="toggleFavorite($event)"
      [ngClass]="{'favorited': favorited}"
      *showToLoggedIn="true">
     <i class="ion-heart"></i>

@@ -17,10 +17,14 @@
             </perfect-scrollbar>
             <small class="label">Author</small>
             <a href="#"
-               class="chip chip--link">{{manga.author}}</a>
+               class="chip chip--link"
+               [routerLink]="['/search']"
+               [queryParams]="{ author: manga.author }">{{manga.author}}</a>
             <small class="label">Artist</small>
             <a href="#"
-               class="chip chip--link">{{manga.artist}}</a>
+               class="chip chip--link"
+               [routerLink]="['/search']"
+               [queryParams]="{ artist: manga.artist }">{{manga.artist}}</a>
             <small class="label">Type</small>
             <span>{{manga.type}}</span>
             <small class="label">Completely scanlated</small>
@@ -34,13 +38,17 @@
         <div class="manga__genres">
             <a href=""
                class="chip chip--link"
-               *ngFor="let genre of manga.genres">{{genre}}</a>
+               *ngFor="let genre of manga.genres"
+               [routerLink]="['/search']"
+               [queryParams]="{ genres: [genre] }">{{genre}}</a>
         </div>
         <small class="label">Categories</small>
         <div class="manga__categories">
             <a href=""
                class="chip chip--link"
-               *ngFor="let category of manga.categories">{{category}}</a>
+               *ngFor="let category of manga.categories"
+               [routerLink]="['/search']"
+               [queryParams]="{ categories: [category] }">{{category}}</a>
         </div>
     </div>
     <div class="admin-actions"

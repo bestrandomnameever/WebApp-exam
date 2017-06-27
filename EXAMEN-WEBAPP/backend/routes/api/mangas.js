@@ -51,6 +51,38 @@ router.get('/search/:searchterm', function (req, res, next) {
     return res.json(req.mangas.map(manga => manga.toJSON()));
 })
 
+//Get mangas matching params
+router.post('/advanced-search', auth.required, auth.isAdmin, function (req, res, next) {
+    var title = req.body.title ? req.body.title : {};
+    var author = req.body.author ? req.body.author : {};
+    var artist = req.body.artist ? req.body.artist : {};
+    var genres = req.body.genres ? req.body.genres : {};
+    var categories = req.body.categories ? req.body.categories : {};
+
+    var query = Manga.find({});
+
+    if (req.body.title) {
+        query = query.and({ $or: [{ title: { $regex: '.*' + req.body.title + '.*', $options: '-i' } }, { alternativeTitles: { $regex: '.*' + req.body.title + '.*', $options: '-i' } }] })
+    }
+    if (req.body.artist) {
+        query = query.and({ artist: { $regex: '.*' + req.body.artist + '.*', $options: '-i' } });
+    }
+    if (req.body.author) {
+        query = query.and({ author: { $regex: '.*' + req.body.author + '.*', $options: '-i' } });
+    }
+    if (req.body.genres) {
+        query = query.and({ genres: { $all: req.body.genres } });
+    }
+    if (req.body.categories) {
+        query = query.and({ categories: { $all: req.body.categories } });
+    }
+
+    /*, author: author, artist: artist, genres: genres, categories: categories*/
+    query.sort({ title: 1 }).then(mangas => {
+        return res.json({ mangas: mangas.map(manga => { return manga.toJSON() }) });
+    })
+});
+
 //Add a manga
 router.post('/', auth.required, auth.isAdmin, function (req, res, next) {
     var manga = new Manga();

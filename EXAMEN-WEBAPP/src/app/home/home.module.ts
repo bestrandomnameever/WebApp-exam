@@ -12,15 +12,19 @@ import { MdProgressSpinnerModule } from '@angular/material';
 import { SharedModule } from './../shared/shared.module';
 
 const homeRouting = RouterModule.forChild([
-  {
-    path: 'home',
-    component: MangaCoverGridComponent
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  }
+    {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
+    {
+        path: 'home',
+        component: MangaCoverGridComponent
+    },
+    {
+        path: 'search',
+        component: MangaCoverGridComponent
+    }
 ]);
 
 @NgModule({
@@ -28,7 +32,7 @@ const homeRouting = RouterModule.forChild([
         MangaCoverComponent,
         MangaCoverGridComponent
     ],
-    imports: [ 
+    imports: [
         homeRouting,
         CommonModule,
         MdProgressSpinnerModule,
@@ -40,4 +44,4 @@ const homeRouting = RouterModule.forChild([
         MangaService
     ]
 })
-export class HomeModule {}
+export class HomeModule { }

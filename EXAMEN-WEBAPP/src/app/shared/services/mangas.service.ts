@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { Params } from '@angular/router';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -23,6 +24,12 @@ export class MangaService {
 
     getMangasMatching(searchTerm: String): Promise<any[]> {
         return this.apiService.get('/mangas/search/' + searchTerm).toPromise();
+    }
+
+    getAllMangasWithParams(params: Params): Promise<Manga[]> {
+        return this.apiService.post('/mangas/advanced-search', params).toPromise().then(res => {
+            return res.mangas;
+        });
     }
 
     addManga(manga: Manga): Promise<Manga> {

@@ -52,7 +52,7 @@ router.get('/search/:searchterm', function (req, res, next) {
 })
 
 //Get mangas matching params
-router.post('/advanced-search', auth.required, auth.isAdmin, function (req, res, next) {
+router.post('/advanced-search', function (req, res, next) {
     var title = req.body.title ? req.body.title : {};
     var author = req.body.author ? req.body.author : {};
     var artist = req.body.artist ? req.body.artist : {};
@@ -77,7 +77,6 @@ router.post('/advanced-search', auth.required, auth.isAdmin, function (req, res,
         query = query.and({ categories: { $all: req.body.categories } });
     }
 
-    /*, author: author, artist: artist, genres: genres, categories: categories*/
     query.sort({ title: 1 }).then(mangas => {
         return res.json({ mangas: mangas.map(manga => { return manga.toJSON() }) });
     })

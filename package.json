@@ -62,7 +62,6 @@
     "typescript": "~2.2.0"
   },
   "scripts": {
-    "postinstall": "ng build",
     "start": "node server.js"
   }
 }

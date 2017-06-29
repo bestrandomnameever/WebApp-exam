@@ -45,10 +45,9 @@ export class AuthComponent implements OnInit {
 
         const credentials = this.authForm.value;
         this.userService.loginOrRegister(this.authType, credentials).then(res => {
-            //console.log(res);
-            this.isSubmitting = false;
+            this.router.navigate(['/home']);
         }).catch(err => {
-            //console.log(err);
+            console.log(err);
             this.isSubmitting = false;
         });
     }

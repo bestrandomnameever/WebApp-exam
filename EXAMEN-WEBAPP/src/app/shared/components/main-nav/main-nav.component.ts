@@ -22,8 +22,8 @@ export class MainNavComponent implements OnInit {
   ngOnInit() {
   }
 
-  navigateToHome() {
-    this.router.navigateByUrl("/");
+  navigateToSearch() {
+    this.router.navigate(['/search']);
   }
 
   search() {
@@ -32,6 +32,6 @@ export class MainNavComponent implements OnInit {
 
   logOut() {
     this.userService.purgeAuth();
-    this.navigateToHome();
+    this.router.navigateByUrl("/");
   }
 }

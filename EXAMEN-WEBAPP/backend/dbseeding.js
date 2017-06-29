@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Manga = mongoose.model('Manga');
+const User = mongoose.model('User');
 
 exports.seedMangas = () => {
     //Remove all manga
@@ -1627,6 +1628,38 @@ exports.seedMangas = () => {
     }
 }
 
-/*exports.seedGenres = () => {
+exports.seedUsers = () => {
+    //Remove all manga
+    User.remove(function (err, removed) {
 
-}*/
+    });
+
+    const users = [
+        {
+            //Normal user
+            "username" : "test",
+            "email" : "test@gmail.com",
+            "password" : "test",
+            "isAdmin" : false
+        },
+        {
+            //Admin priviliges user
+            "username" : "testadmin",
+            "email" : "testadmin@gmail.com",
+            "password" : "test",
+            "isAdmin" : true
+        }
+    ]
+
+    for(user of users) {
+        var newUser = new User();
+        console.log("test");
+        newUser.username = user.username;
+        newUser.email = user.email;
+        newUser.setPassword(user.password);
+        newUser.isAdmin = user.isAdmin;
+        
+        console.log("test2");
+        newUser.save();
+    }
+}

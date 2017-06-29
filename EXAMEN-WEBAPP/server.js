@@ -57,6 +57,7 @@ const server = http.createServer(app);
 
 const seeder = require('./backend/dbseeding');
 seeder.seedMangas();
+seeder.seedUsers();
 
 /**
  * Listen on provided port, on all network interfaces.

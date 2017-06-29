@@ -1,0 +1,14 @@
+@import "../../../../sass/_globals";
+
+.favorite-btn{
+    display: inline-block;
+
+    font-size: $font-size-xlarge;
+    color: rgba($primary-text-color, 0.6);
+
+    cursor: pointer;
+
+    &.favorited {
+        color: rgba(red, 0.9);
+    }
+}

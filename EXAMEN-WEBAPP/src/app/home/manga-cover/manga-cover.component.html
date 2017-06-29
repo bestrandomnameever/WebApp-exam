@@ -1,0 +1,17 @@
+<div class="mangaCover"
+     (click)="openDetail()">
+  <div class="mangaCover__container">
+    <img src={{mangaCoverUrl}}
+         alt=""
+         class="mangaCover__img">
+    <div class="mangaCover_content">
+      <div class="mangaCover__actions">
+        <favorite-btn class="mangaCover__actions__favorite" mangaSlug="{{mangaSlug}}"></favorite-btn>
+      </div>
+      <perfect-scrollbar class="mangaCover__synopsis">
+        {{mangaSynopsis}}
+      </perfect-scrollbar>
+      <span class="mangaCover__title">{{mangaName}}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="manga-detail-root">
+    <div class="img-info-cols">
+        <div class="img-info-cols__img">
+            <img src="{{manga.coverUrl}}"
+                 alt="">
+        </div>
+        <div class="img-info-cols__info">
+            <h1 class="manga__title">{{manga.title}}</h1>
+            <small class="label">Also known as</small>
+            <div class="manga__alternative-titles">
+                <div class="chip"
+                     *ngFor="let title of manga.alternativeTitles">{{title}}</div>
+            </div>
+            <small class="label">Synopsis</small>
+            <perfect-scrollbar class="manga__synopsis">
+                {{manga.synopsis}}
+            </perfect-scrollbar>
+            <small class="label">Author</small>
+            <a href="#"
+               class="chip chip--link"
+               [routerLink]="['/search']"
+               [queryParams]="{ author: manga.author }">{{manga.author}}</a>
+            <small class="label">Artist</small>
+            <a href="#"
+               class="chip chip--link"
+               [routerLink]="['/search']"
+               [queryParams]="{ artist: manga.artist }">{{manga.artist}}</a>
+            <small class="label">Type</small>
+            <span>{{manga.type}}</span>
+            <small class="label">Completely scanlated</small>
+            <div class="manga__completed"
+                 [ngClass]="{'is-completed': manga.isCompleted}">
+            </div>
+        </div>
+    </div>
+    <div>
+        <small class="label">Genres</small>
+        <div class="manga__genres">
+            <a href=""
+               class="chip chip--link"
+               *ngFor="let genre of manga.genres"
+               [routerLink]="['/search']"
+               [queryParams]="{ genres: [genre] }">{{genre}}</a>
+        </div>
+        <small class="label">Categories</small>
+        <div class="manga__categories">
+            <a href=""
+               class="chip chip--link"
+               *ngFor="let category of manga.categories"
+               [routerLink]="['/search']"
+               [queryParams]="{ categories: [category] }">{{category}}</a>
+        </div>
+    </div>
+    <div class="admin-actions"
+         *showToLoggedIn="true">
+        <favorite-btn mangaSlug="{{manga.slug}}"></favorite-btn>
+        <a *showToAdmin
+           [routerLink]="['/edit', manga.slug]">
+             <i class="ion-edit"></i>
+         </a>
+        <a (click)="deleteManga()"
+           *showToAdmin
+           href="javascript:void(null)">
+            <i class="ion-trash-b"></i>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+@import "../../../../sass/_globals";
+
+.main-nav {
+    display: flex;
+    padding: 1rem;
+
+    align-items: center;
+
+    background-color: #ea9801;
+    color: white;
+
+    &__logo {
+        img {
+            height: 50px;
+        }
+    }
+
+    &__searchbar {
+        position: relative;
+        margin: 0 5%;
+        flex-grow: 1;
+        color: white;
+
+        &__search-icon {
+            position: absolute;
+            width: auto;
+            top: 0.3rem;
+            left: 0.3rem;
+            right: 0.3rem;
+        }
+
+        &__input {
+            width: 100%;
+            padding: 0.5rem 0.8rem;
+            border: none;
+            border-radius: 5px;
+
+            background-color: rgba(black, 0.3);
+
+
+            font-size: $font-size-large;
+
+            transition: background-color 150ms;
+
+            &:focus {
+                border: none;
+                background-color: white;
+                color: $primary-text-color;
+            }
+        }
+    }
+
+    &__menu {
+        margin: 0;
+
+        text-align: right;
+        list-style: none;
+        -webkit-padding-start: 0;
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+
+        a {
+            display: inline-block;
+            border: 1px solid transparent;
+            border-radius: 3px;
+
+            text-decoration: none;
+            color: inherit;
+
+            li {
+                display: inline-block;
+                padding: 0.5rem 0.8rem;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+
+            &:hover {
+                border: 1px solid #ffc957;
+                background-color: rgba(white, 0.2);
+                box-shadow: 0px 0px 5px rgba(grey, 0.8);
+            }
+
+            &:active li {}
+        }
+    }
+}

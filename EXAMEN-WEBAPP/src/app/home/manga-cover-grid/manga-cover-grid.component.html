@@ -1,0 +1,14 @@
+<div class="manga-cover-grid">
+  <div class="loading-mangas"
+       *ngIf="loading; else mangacovers">
+    <md-spinner></md-spinner>
+  </div>
+  <ng-template #mangacovers>
+    <app-manga-cover *ngFor="let manga of mangas"
+                     class="manga-cover-grid__cover"
+                     [mangaSlug]="manga.slug"
+                     [mangaName]="manga.title"
+                     [mangaCoverUrl]="manga.coverUrl"
+                     [mangaSynopsis]="manga.synopsis"></app-manga-cover>
+  </ng-template>
+</div>

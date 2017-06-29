@@ -1,0 +1,41 @@
+<nav class="main-nav">
+  <div class="main-nav__logo">
+    <a routerLink="/">
+      <img src="../../assets/logo.png" alt="">
+    </a>
+  </div>
+  <div class="main-nav__searchbar">
+    <input class="main-nav__searchbar__input"
+           type="search"
+           name="search"
+           value=""
+           [(ngModel)]="searchTerm"
+           (click)="navigateToSearch()"
+           (keyup)="search()"
+           (keyup.enter)="search()">
+  </div>
+  <ul class="main-nav__menu">
+    <a routerLink="/"
+       routerLinkActive="active">
+      <li>Home</li>
+    </a>
+    <a routerLink="edit/add"
+       routerLinkActive="active"
+       *showToAdmin>
+      <li>Add a manga</li>
+    </a>
+    <a routerLink="auth"
+       routerLinkActive="active"
+       *showToLoggedIn="false">
+      <li>Log in</li>
+    </a>
+    <a (click)="logOut()"
+       href="javascript:void(0)"
+       *showToLoggedIn="true">
+      <li>Log out</li>
+    </a>
+  </ul>
+  <div class="main-nav__user-avatar">
+
+  </div>
+</nav>

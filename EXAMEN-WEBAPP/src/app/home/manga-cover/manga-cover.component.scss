@@ -1,0 +1,108 @@
+$hoverTransitionTiming: 200ms;
+
+.mangaCover {
+    //width: 190px;
+    box-shadow: 1px 1px 5px 0px rgba(92, 92, 92, 1);
+
+    overflow: hidden;
+
+    &__container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-top: 140%;
+
+        flex-direction: column;
+
+        .mangaCover_content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mangaCover__actions {
+            display: none;
+            margin: 0.5rem 0.5rem 0;
+            text-align: right;
+
+            z-index: 5;
+        }
+
+        .mangaCover__img {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .mangaCover__synopsis {
+            margin: 0.8rem 0.5rem;
+            padding: 0.3rem;
+
+            border-radius: 3px;
+            overflow: hidden;
+
+            flex-shrink: 1;
+            flex-grow: 1;
+
+            background: rgba(#595959, 0.7);
+            background-repeat: no-repeat;
+            background-size: 50% 50%;
+            background-position: center;
+
+            color: white;
+            opacity: 0;
+
+            transition: opacity #{$hoverTransitionTiming};
+        }
+
+        .mangaCover__title {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 1rem 0.5rem 0.5rem;
+
+            align-self: flex-end;
+
+            background-image: linear-gradient(180deg, transparent, rgba(black, 0.7));
+            color: white;
+            font-weight: 700;
+        }
+
+        &::before {
+            display: block;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            background: linear-gradient(45deg, rgba(#DB9B4F, 0.5), rgba(#fc9920, 0.9));
+            transition: opacity #{$hoverTransitionTiming};
+        }
+
+        &:hover {
+            &::before {
+                opacity: 1;
+            }
+
+            .mangaCover {
+                &__actions {
+                    display: block;
+                }
+                &__synopsis {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

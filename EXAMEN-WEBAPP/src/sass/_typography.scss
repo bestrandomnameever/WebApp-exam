@@ -1,0 +1,12 @@
+body {
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: $font-size-medium;
+
+    color: $primary-text-color;
+
+    small {
+        font-size: $font-size-small;
+        color: $secondary-text-color;
+    }
+}

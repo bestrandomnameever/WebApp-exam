@@ -1,11 +1,23 @@
+import { Router, RouterModule } from '@angular/router';
+import { MaterialModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from "@angular/router/testing";
 import { DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { Observable } from 'rxjs/Observable';
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AuthComponent } from './auth.component';
+
+import { UserService } from './../shared/services/user.service';
+
+class UserServiceMock {
+  constructor() {
+
+  }
+}
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -14,24 +26,33 @@ describe('AuthComponent', () => {
   let el: HTMLElement;
 
   beforeEach(async(() => {
+    let userServiceMock = new UserServiceMock();
     TestBed.configureTestingModule({
-      declarations: [ AuthComponent ],
+      declarations: [AuthComponent],
       providers: [
-          {
-              provide: ActivatedRoute, useValue: {
-                  url: [
-                      {
-                          path: 'login'
-                      }
-                  ]
-              }
+        {
+          provide: ActivatedRoute, useValue: {
+            url: Observable.of(
+              [
+                {
+                  path: 'login'
+                }
+              ]
+            )
           }
+        },
+        {
+          provide: UserService, userValue: userServiceMock
+        }
       ],
       imports: [
-        ReactiveFormsModule
+        MaterialModule,
+        NoopAnimationsModule,
+        ReactiveFormsModule,
+        RouterTestingModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

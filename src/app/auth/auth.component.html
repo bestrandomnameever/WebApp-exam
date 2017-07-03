@@ -10,6 +10,9 @@
                        mdInput
                        placeholder="Username"
                        type="text">
+                <md-error>
+                    <span>Can't be blank</span>
+                </md-error>
             </md-input-container>
             <md-input-container class="full-width">
                 <input formControlName="email"
@@ -33,21 +36,23 @@
                 </md-error>
             </md-input-container>
 
-            <button class=""
-                    color='primary'
-                    [disabled]="!authForm.valid"
-                    md-raised-button
-                    type="submit">
-              {{ title }}
-            </button>
-            <a *ngIf="authType === 'register'"
-               routerLink="/auth/login">
+            <div class="form-actions">
+                <button class=""
+                        color='primary'
+                        [disabled]="!authForm.valid"
+                        md-raised-button
+                        type="submit">
+                    {{ title }}
+                </button>
+                <a *ngIf="authType === 'register'"
+                   routerLink="/auth/login">
                 Already have an account?
                </a>
-            <a *ngIf="authType === 'login'"
-               routerLink="/auth/register">
+                <a *ngIf="authType === 'login'"
+                   routerLink="/auth/register">
                 Make an account
                </a>
+            </div>
         </fieldset>
     </form>
 </div>

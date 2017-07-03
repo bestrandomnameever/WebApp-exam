@@ -104,6 +104,7 @@
                    [modelAsStrings]='true'
                    [placeholder]='"Add more"'
                    [secondaryPlaceholder]='"Add some categories"'
+                   [onAdding]="transformLowerCasedCapitalized"
                    >
             <tag-input-dropdown [showDropdownIfEmpty]="true"
                                 [autocompleteItems]="categories">

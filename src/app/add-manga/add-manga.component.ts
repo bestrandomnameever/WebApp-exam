@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
@@ -10,6 +11,7 @@ import {
 	MangaService,
 	MetadataService
 } from 'app/shared';
+import { TagModel } from "ng2-tag-input/dist/modules/core";
 
 @Component({
 	selector: 'app-addmanga',
@@ -88,8 +90,8 @@ export class AddMangaComponent implements OnInit {
 		return this.editType === "add";
 	}
 
-	transformLowerCasedCapitalized(item: string): string {
-		return item.charAt(0).toUpperCase() + item.toLowerCase().slice(1);
+	transformLowerCasedCapitalized(item: TagModel): Observable<TagModel> {
+		return Observable.of(item).map(item => item.toString().charAt(0).toUpperCase() +  item.toString().toLowerCase().substring(1));
 	}
 
 	openSelectCoverDialog() {

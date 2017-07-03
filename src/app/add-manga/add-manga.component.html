@@ -97,13 +97,15 @@
             </tag-input-dropdown>
         </tag-input>
 
+<!--[transform]="transformLowerCasedCapitalized"-->
         <tag-input formControlName='categories'
                    name="categories"
                    theme='weeb-theme'
                    [modelAsStrings]='true'
                    [placeholder]='"Add more"'
                    [secondaryPlaceholder]='"Add some categories"'
-                   [transform]="transformLowerCasedCapitalized">
+                   [onAdding]="transformLowerCasedCapitalized"
+                   >
             <tag-input-dropdown [showDropdownIfEmpty]="true"
                                 [autocompleteItems]="categories">
             </tag-input-dropdown>

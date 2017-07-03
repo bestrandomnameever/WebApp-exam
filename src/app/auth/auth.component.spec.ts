@@ -1,8 +1,8 @@
-import { Router, RouterModule } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
+import { ActivatedRoute, Router, RouterModule, UrlSegment } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
 import { DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
@@ -25,20 +25,19 @@ describe('AuthComponent', () => {
   let de: DebugElement;
   let el: HTMLElement;
 
+  let userServiceMock: UserServiceMock;
+  let pathSubject: Subject<UrlSegment[]>;
+
   beforeEach(async(() => {
-    let userServiceMock = new UserServiceMock();
+    userServiceMock = new UserServiceMock();
+    pathSubject = new Subject<UrlSegment[]>();
+
     TestBed.configureTestingModule({
       declarations: [AuthComponent],
       providers: [
         {
           provide: ActivatedRoute, useValue: {
-            url: Observable.of(
-              [
-                {
-                  path: 'login'
-                }
-              ]
-            )
+            url: pathSubject
           }
         },
         {
@@ -58,14 +57,67 @@ describe('AuthComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-    de = fixture.debugElement.query(By.css('.auth-container'));
-    el = de.nativeElement;
   });
 
-  it('text button should change when authType is register ', () => {
+  it("Text button and heading should be 'Sign in' when urlSegment is 'login'", fakeAsync(() => {
     fixture.detectChanges();
-    var text = fixture.debugElement.query(By.css('.form-actions button')).nativeElement.textContent;
-    expect(text).toMatch("Sign in");
-  });
+    pathSubject.next([{ path: 'login' }] as UrlSegment[]);
+    tick();
+    fixture.detectChanges();
+
+    var buttonText = fixture.debugElement.query(By.css('.form-actions button')).nativeElement.textContent;
+    expect(buttonText).toMatch("Sign in");
+    var headingText = fixture.debugElement.query(By.css('h1')).nativeElement.textContent;
+    expect(headingText).toMatch("Sign in");
+  }));
+
+  it("Text button and heading should be 'Sign up' when urlSegment is 'register'", fakeAsync(() => {
+    fixture.detectChanges();
+    pathSubject.next([{ path: 'register' }] as UrlSegment[]);
+    tick();
+    fixture.detectChanges();
+
+    var buttonText = fixture.debugElement.query(By.css('.form-actions button')).nativeElement.textContent;
+    expect(buttonText).toMatch("Sign up");
+    var headingText = fixture.debugElement.query(By.css('h1')).nativeElement.textContent;
+    expect(headingText).toMatch("Sign up");
+  }));
+
+  it('Email field is not valid if invalid email', fakeAsync(() => {
+    fixture.detectChanges();
+    pathSubject.next([{ path: 'register' }] as UrlSegment[]);
+    tick();
+    fixture.detectChanges();
+
+    component.authForm.controls['email'].setValue("testatgmail.com");
+    fixture.detectChanges();
+
+    expect(component.authForm.controls['email'].valid).toBeFalsy();
+  }));
+
+  it('Not valid if not all the fields are filled in (register)', fakeAsync(() => {
+    fixture.detectChanges();
+    pathSubject.next([{ path: 'register' }] as UrlSegment[]);
+    tick();
+    fixture.detectChanges();
+
+    component.authForm.controls['username'].setValue("test");
+    component.authForm.controls['email'].setValue("test@gmail.com");
+    component.authForm.controls['password'].setValue("");
+    fixture.detectChanges();
+    expect(!component.authForm.valid).toBeTruthy();
+  }));
+
+  it('Valid if all the fields are filled in (register)', fakeAsync(() => {
+    fixture.detectChanges();
+    pathSubject.next([{ path: 'register' }] as UrlSegment[]);
+    tick();
+    fixture.detectChanges();
+
+    component.authForm.controls['username'].setValue("test");
+    component.authForm.controls['email'].setValue("test@gmail.com");
+    component.authForm.controls['password'].setValue("testerino");
+    fixture.detectChanges();
+    expect(component.authForm.valid).toBeTruthy();
+  }));
 });
